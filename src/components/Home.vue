@@ -6,11 +6,11 @@
 			<div id="logo-x">x</div>
 		</div>
 		<div id="login-bar">
-			<router-link to="/browse" class="login-icon waves-light waves-effect">
-				<img src="@/assets/images/logos/facebook.png" />
+			<router-link to="/browse" class="login-icon waves-effect waves-light">
+				<img class="elevation-2" src="@/assets/images/logos/facebook.png" />
 			</router-link>
-			<router-link to="/browse" class="login-icon waves-light waves-effect">
-				<img src="@/assets/images/logos/google.png" />
+			<router-link to="/browse" class="login-icon waves-effect waves-light">
+				<img class="elevation-2" src="@/assets/images/logos/google.png" />
 			</router-link>
 		</div>
 	</div>
@@ -68,5 +68,6 @@ export default {
 
 .login-icon img {
 	max-width: 100px;
+	border-radius: 50%;
 }
 </style>
