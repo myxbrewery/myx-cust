@@ -43,11 +43,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-	font-family: "Arciform";
-	src: url("/static/css/fonts/Arciform.otf") format("opentype");
-}
-
 #home {
 	margin-top: 20vh;
 }
