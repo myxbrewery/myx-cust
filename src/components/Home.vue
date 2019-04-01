@@ -1,0 +1,72 @@
+<template>
+	<div id="home">
+		<div id="logo-myx">
+			<div id="logo-m">m</div>
+			<div id="logo-y">y</div>
+			<div id="logo-x">x</div>
+		</div>
+		<div id="login-bar">
+			<router-link to="/browse" class="login-icon waves-light waves-effect">
+				<img src="@/assets/images/logos/facebook.png" />
+			</router-link>
+			<router-link to="/browse" class="login-icon waves-light waves-effect">
+				<img src="@/assets/images/logos/google.png" />
+			</router-link>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	name: 'Home',
+
+	mounted() {
+		$('#logo-x').css('opacity', 0);
+		$('#login-bar').css('opacity', 0);
+
+		let grow = () => {
+			$('#logo-myx').velocity({ 'font-size': '144px' }, 500);
+			$('#login-bar').velocity({ opacity: 1 }, 500);
+		}
+		let red = () => $('#logo-m').velocity({ color: 'red' }, {
+			duration: 1000,
+			complete: grow
+		});
+
+		$('#logo-x').velocity({ opacity: 1 }, {
+			duration: 1000,
+			complete: red,
+		});
+		
+	}
+};
+</script>
+
+<style scoped>
+@font-face {
+	font-family: "Arciform";
+	src: url("/static/css/fonts/Arciform.otf") format("opentype");
+}
+
+#home {
+	margin-top: 20vh;
+}
+
+#logo-myx {
+	font-family: "Arciform";
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+	font-size: 100px;
+}
+
+.login-icon {
+	margin: 16px;
+}
+
+.login-icon img {
+	max-width: 100px;
+}
+</style>
