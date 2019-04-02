@@ -1,4 +1,4 @@
-# not-eatsy
+# Myx
 
 > Myx
 
