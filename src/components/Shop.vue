@@ -1,7 +1,9 @@
 <template>
-	<router-link id="shop" class="waves-effect waves-light" to="/menu">
+	<router-link id="shop" class="container waves-effect waves-light" to="/menu">
 		<div id="info-bar" class="container">
 			<img class="icon left" src="@/assets/images/icons/chicken.svg">
+			<img class="icon right" src="@/assets/images/icons/hourglass.png">
+			<div id="indicator" class="right" />
 			<div id="title" class="left">
 				<p>CHICKEN RICE</p>
 				<p>$ $ $ &nbsp; Non-Halal</p>
@@ -31,7 +33,13 @@ a {
 	text-decoration: none;
 	color: #2c3e50;
 }
-
+#indicator{
+  border-radius: 50%;
+  background-color: #6fb75b;
+  height: 2vh;
+  width: 2vh;
+  margin-top: 1.5vh;
+}
 #shop {
 	box-shadow: 0px 2px 2px #cccccc;
 	margin-top: 1vw;
@@ -49,7 +57,7 @@ a {
 }
 
 .icon {
-	margin: 8px;
+	margin: 1vh;
 	height: 3vh;
 }
 
@@ -79,5 +87,7 @@ a {
 
 .container{
   max-width: 97vw;
+  padding: 0;
+  margin: 0;
 }
 </style>

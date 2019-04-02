@@ -25,7 +25,7 @@ export default {
 		$('#login-bar').css('opacity', 0);
 
 		let grow = () => {
-			$('#logo-myx').velocity({ 'font-size': '144px' }, 500);
+			$('#logo-myx').velocity({ 'font-size': '30vw' }, 500);
 			$('#login-bar').velocity({ opacity: 1 }, 500);
 		}
 		let red = () => $('#logo-m').velocity({ color: 'red' }, {
@@ -54,15 +54,15 @@ export default {
 	flex-direction: row;
 	justify-content: center;
 
-	font-size: 100px;
+	font-size: 20vw;
 }
 
 .login-icon {
-	margin: 16px;
+	margin: 5vw;
 }
 
 .login-icon img {
-	max-width: 100px;
+	max-width: 18vw;
 	border-radius: 50%;
 }
 </style>
