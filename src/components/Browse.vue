@@ -4,6 +4,7 @@
 		<Shop />
 		<Shop />
 		<Shop />
+		<Shop />
 	</div>
 </template>
 
@@ -26,6 +27,10 @@ export default {
 	color: white;
 
 	margin: 0px;
-	padding: 30px 0px;
+	padding: 2vh 0px;
+	font-size: 7vh;
+}
+#browse{
+  background-color: #efefef;
 }
 </style>
