@@ -26,11 +26,6 @@ export default {
 </script>
 
 <style scoped>
-a {
-	text-decoration: none;
-	color: #2c3e50;
-}
-
 #shop {
 	box-shadow: 0px 2px 2px #cccccc;
 	margin-top: 1vw;

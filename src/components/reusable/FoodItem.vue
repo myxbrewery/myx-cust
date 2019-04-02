@@ -1,18 +1,20 @@
 <template>
-	<div id="food-item">
-		<div id="food-image">
-			<img src="@/assets/images/chicken.jpg">
-		</div>
+	<router-link to="/pay">
+		<div id="food-item">
+			<div id="food-image">
+				<img src="@/assets/images/chicken.jpg">
+			</div>
 
-		<div id="food-description">
-			<h6><b>Boiled Chicken Rice</b></h6>
-			<p>Fragrantly steamed chicken rice topped with well-seasoned boiled chicken.</p>
-			<div id="food-price">
-				<p><b>$3.50</b></p>
-				<i class="material-icons">add_box</i>
+			<div id="food-description">
+				<h6><b>Boiled Chicken Rice</b></h6>
+				<p>Fragrantly steamed chicken rice topped with well-seasoned boiled chicken.</p>
+				<div id="food-price">
+					<p><b>$3.50</b></p>
+					<i class="material-icons">add_box</i>
+				</div>
 			</div>
 		</div>
-	</div>
+	</router-link>
 </template>
 
 <script>
@@ -49,6 +51,10 @@ export default {
 	margin: 8px;
 
 	text-align: left;
+}
+
+#food-description p {
+	font-color: #303030;
 }
 
 #food-price {

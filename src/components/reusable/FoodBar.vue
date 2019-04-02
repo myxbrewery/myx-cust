@@ -3,7 +3,7 @@
 		<img class="icon" src="@/assets/images/icons/chicken.svg">
 		<div id="title">
 			<p>CHICKEN RICE</p>
-			<p>$ $ $ &nbsp; Non-Halal</p>
+			<p><span style="color: salmon">$ $</span> $ &nbsp; Non-Halal</p>
 		</div>
 		<img class="icon" src="@/assets/images/icons/hourglass.png">
 		<div id="indicator" />
@@ -18,6 +18,8 @@ export default {
 
 <style scoped>
 #food-bar {
+	font-weight: bold;
+
 	display: flex;
 	padding: 1vh;
 	padding-right: 2vh;
