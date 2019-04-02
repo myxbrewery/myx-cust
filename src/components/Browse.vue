@@ -1,6 +1,6 @@
 <template>
 	<div id="browse">
-		<h1 id="title">myx</h1>
+		<SearchBar />
 		<Shop />
 		<Shop />
 		<Shop />
@@ -9,28 +9,20 @@
 </template>
 
 <script>
-import Shop from '@/components/Shop';
+import SearchBar from '@/components/reusable/SearchBar';
+import Shop from '@/components/reusable/Shop';
 
 export default {
 	name: 'Browse',
 	components: {
+		SearchBar,
 		Shop,
 	},
 };
 </script>
 
 <style scoped>
-#title {
-	font-family: "Arciform";
-
-	background-color: salmon;
-	color: white;
-
-	margin: 0px;
-	padding: 2vh 0px;
-	font-size: 7vh;
-}
-#browse{
+#browse {
   background-color: #efefef;
 }
 </style>

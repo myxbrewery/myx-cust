@@ -31,4 +31,10 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+.container{
+  max-width: 97vw;
+  padding: 0;
+  margin-top: 1vw;
+}
 </style>
