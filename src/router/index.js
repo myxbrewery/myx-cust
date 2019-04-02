@@ -3,6 +3,8 @@ import Vuetify from 'vuetify';
 import Router from 'vue-router';
 import Home from '@/components/Home';
 import Browse from '@/components/Browse';
+import Menu from '@/components/Menu';
+import Notification from '@/components/Notification';
 import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify);
@@ -19,6 +21,17 @@ export default new Router({
     	path: '/browse',
     	name: 'Browse',
     	component: Browse,
+    },
+    {
+      path: '/menu',
+      name: 'Menu',
+      component: Menu,
+    },
+
+    {
+      path: '/notify',
+      name: 'Notification',
+      component: Notification,
     },
   ]
 });

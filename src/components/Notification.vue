@@ -1,9 +1,9 @@
 <template>
-  <div class="hello">
-    <a class="btn" @click="notify(0)">
+  <div id="notification">
+    <a class="btn waves-effect waves-light" @click="notify(0)">
       Notify
     </a>
-    <a class="btn" @click="notify(3000)">
+    <a class="btn waves-effect waves-light" @click="notify(2000)">
       Notify with delay
     </a>
   </div>
@@ -11,27 +11,24 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Notification',
   methods: {
+    sendNotification(title, body) {
+      new Notification(title, { body });
+      console.log('Notification:', title,body);
+    },
+
     notify(delay) {
       let title = 'Title';
       let body = 'Body';
-      setTimeout(() => new Notification(title, { body }), delay);
+      setTimeout(() => this.sendNotification(title, body), delay);
     }
   },
 };
 </script>
 
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
+#notification {
+  margin-top: 60px;
 }
 </style>

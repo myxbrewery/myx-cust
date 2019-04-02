@@ -1,5 +1,5 @@
 <template>
-	<router-link id="shop" class="waves-effect waves-light" to="/menu">
+	<router-link id="shop" class="container waves-effect waves-light" to="/menu">
 		<div id="info-bar" class="container">
 			<img class="icon left" src="@/assets/images/icons/chicken.svg">
 			<div id="title" class="left">
