@@ -51,8 +51,8 @@ export default {
 
 .btn {
 	background-color: salmon;
-	height: 100%;
 	width: 100%;
+	height: 100%;
 
 	margin-top: 0.5vh;
 	padding: 0.75rem;

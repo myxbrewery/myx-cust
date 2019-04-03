@@ -38,6 +38,9 @@ html, body {
   height: 100%;
 }
 
+body {
+}
+
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   font-family: 'Noah';

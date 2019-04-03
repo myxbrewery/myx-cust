@@ -23,7 +23,7 @@ export default {
 
 	methods: {
 		redirect() {
-			this.$router.push('/');
+			this.$router.push('/receipt');
 		},
 	},
 };

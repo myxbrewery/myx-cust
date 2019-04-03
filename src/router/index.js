@@ -5,6 +5,7 @@ import Home from '@/components/Home';
 import Browse from '@/components/Browse';
 import Menu from '@/components/Menu';
 import Pay from '@/components/Pay';
+import Receipt from '@/components/Receipt';
 import Notification from '@/components/Notification';
 import 'vuetify/dist/vuetify.min.css';
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/pay',
       name: 'Pay',
       component: Pay,
+    },
+    {
+      path: '/receipt',
+      name: 'Receipt',
+      component: Receipt,
     },
 
     {
