@@ -7,8 +7,14 @@
 		<div class="myx-container">
 			<FoodBar class="elevation-1" style="background-color: white;" />
 			<div class="scrollable">
-				<FoodItem v-for="item in Array(5)" />
+				<FoodItem v-for="(item, index) in menu"
+					:key="index"
+					:name="item.name"
+					:text="item.text"
+					:thumbnail="item.thumbnail"
+					:price="item.price" />
 			</div>
+			<router-link to="/pay" class="btn waves-effect waves-light">Checkout order</router-link>
 		</div>
 	</div>
 </template>
@@ -19,6 +25,8 @@ import SectionTitle from '@/components/reusable/SectionTitle';
 import FoodBar from '@/components/reusable/FoodBar';
 import FoodItem from '@/components/reusable/FoodItem';
 
+import menu from '@/data/menu.json';
+
 export default {
 	name: 'Menu',
 	components: {
@@ -26,13 +34,30 @@ export default {
 		SectionTitle,
 		FoodBar,
 		FoodItem,
-	}
+	},
+
+	data() {
+		return {
+			menu
+		};
+	},
 };
 </script>
 
 <style scoped>
 #menu {
 	background-color: #efefef;
-	overflow: hidden;
+}
+
+.btn {
+	background-color: salmon;
+	height: 100%;
+	width: 100%;
+
+	margin-top: 0.5vh;
+	padding: 0.75rem;
+
+	font-size: 1.5rem;
+	font-weight: 500;
 }
 </style>

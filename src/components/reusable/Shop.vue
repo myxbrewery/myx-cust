@@ -3,13 +3,12 @@
 		<FoodBar />
 
 		<div id="image-bar">
-			<img class="food" src="@/assets/images/food/health_soup/bakuteh.jpg">
-			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
-			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
-			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
-			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
-			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
-			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
+			<img class="food" src="/static/images/food/chicken_rice/steamed.jpg">
+			<img class="food" src="/static/images/food/chicken_rice/roasted.jpg">
+			<img class="food" src="/static/images/food/chicken_rice/charsiew.jpg">
+			<img class="food" src="/static/images/food/chicken_rice/belly.jpg">
+			<img class="food" src="/static/images/food/chicken_rice/fried.jpg">
+			<img class="food" src="/static/images/food/chicken_rice/wanton.jpg">
 		</div>
 	</router-link>
 </template>
@@ -37,6 +36,8 @@ export default {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
+
+	width: 100%;
 	padding: 0px;
 
 	overflow: scroll;

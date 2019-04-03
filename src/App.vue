@@ -34,6 +34,10 @@ export default {
   src: url("/static/css/fonts/Noah.otf") format("opentype");
 }
 
+html, body {
+  height: 100%;
+}
+
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   font-family: 'Noah';

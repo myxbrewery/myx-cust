@@ -1,25 +1,41 @@
 <template>
-	<router-link to="/pay">
-		<div id="food-item">
-			<div id="food-image">
-				<img src="@/assets/images/food/chicken_rice/steamed.jpg">
-			</div>
+	<div id="food-item">
+		<div id="food-image">
+			<img :src="thumbnail">
+		</div>
 
-			<div id="food-description">
-				<h6><b>Boiled Chicken Rice</b></h6>
-				<p>Fragrantly steamed chicken rice topped with well-seasoned boiled chicken.</p>
-				<div id="food-price">
-					<p><b>$3.50</b></p>
-					<i class="material-icons">add_box</i>
+		<div id="food-description">
+			<h6><b>{{ name }}</b></h6>
+			<p>{{ text }}</p>
+			<div id="food-price">
+				<p><b>${{ price.toFixed(2) }}</b></p>
+				<div id="food-quantity">
+					<i class="material-icons"
+						v-if="quantity > 0"
+						@click="quantity--">
+							indeterminate_check_box
+					</i>
+					<p v-if="quantity > 0">{{ quantity }}</p>
+					<i class="material-icons"
+						@click="quantity++">
+							add_box
+					</i>
 				</div>
 			</div>
 		</div>
-	</router-link>
+	</div>
 </template>
 
 <script>
 export default {
 	name: 'FoodItem',
+	props: ['name', 'text', 'thumbnail', 'price'],
+
+	data() {
+		return {
+			quantity: 0,
+		};
+	},
 };
 </script>
 
@@ -66,9 +82,21 @@ export default {
 	margin: 0px;
 }
 
-#food-price .material-icons {
-	margin-right: 8px;
+#food-quantity {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+#food-quantity .material-icons {
+	margin: 0px 8px;
 	font-size: 2rem;
 	color: salmon;
+}
+
+#food-quantity p {
+	width: 1rem;
+	text-align: center;
+	line-height: 2rem;
 }
 </style>

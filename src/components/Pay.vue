@@ -4,7 +4,7 @@
 		<div id="content">
 			<h5>Your total is</h5>
 			<h1>$3.50</h1>
-			<a href="http://www.dbs.com.sg/personal/mobile/paylink/index.html?tranRef=bca6jKVtAr">
+			<a href="http://www.dbs.com.sg/personal/mobile/paylink/index.html?tranRef=bca6jKVtAr" target="_blank" @click="redirect">
 				<img src="@/assets/images/paylah.jpg">
 			</a>
 			<h6>Click on above image to pay</h6>
@@ -19,6 +19,12 @@ export default {
 	name: 'Pay',
 	components: {
 		SearchBar,
+	},
+
+	methods: {
+		redirect() {
+			this.$router.push('/');
+		},
 	},
 };
 </script>
