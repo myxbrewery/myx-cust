@@ -4,10 +4,10 @@
 		<SectionTitle
 			header1="Stall menu"
 			header2="Order" />
-		<div class="container">
+		<div class="myx-container">
 			<FoodBar class="elevation-1" style="background-color: white;" />
 			<div class="scrollable">
-				<FoodItem v-for="item in [0, 1, 2, 3, 4]" />
+				<FoodItem v-for="item in Array(5)" />
 			</div>
 		</div>
 	</div>

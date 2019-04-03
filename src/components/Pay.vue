@@ -5,7 +5,7 @@
 			<h5>Your total is</h5>
 			<h1>$3.50</h1>
 			<a href="http://www.dbs.com.sg/personal/mobile/paylink/index.html?tranRef=bca6jKVtAr">
-				<img src="https://media.karousell.com/media/photos/products/2017/10/14/dbs_paylah_referral_code_1507951457_97c35afa.jpg">
+				<img src="@/assets/images/paylah.jpg">
 			</a>
 			<h6>Click on above image to pay</h6>
 		</div>

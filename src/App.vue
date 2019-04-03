@@ -43,9 +43,10 @@ export default {
   color: #2c3e50;
 }
 
-.container{
+.myx-container {
   max-width: 97vw;
   padding: 0;
+  margin: auto;
   margin-top: 1vw;
 }
 

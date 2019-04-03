@@ -2,7 +2,7 @@
 	<router-link to="/pay">
 		<div id="food-item">
 			<div id="food-image">
-				<img src="@/assets/images/chicken.jpg">
+				<img src="@/assets/images/food/chicken_rice/steamed.jpg">
 			</div>
 
 			<div id="food-description">

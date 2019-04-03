@@ -1,5 +1,5 @@
 <template>
-	<div id="section-title" class="container">
+	<div id="section-title" class="myx-container">
 		<h1>{{ header1 }}</h1>
 		<h2>{{ header2 }}</h2>
 	</div>

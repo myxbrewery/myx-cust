@@ -1,15 +1,15 @@
 <template>
-	<router-link id="shop" class="container waves-effect waves-light" to="/menu">
+	<router-link id="shop" class="myx-container waves-effect waves-light" to="/menu">
 		<FoodBar />
 
 		<div id="image-bar">
-			<img class="food" src="@/assets/images/food/bakuteh.jpg">
-			<img class="food" src="@/assets/images/chicken.jpg">
-			<img class="food" src="@/assets/images/chicken.jpg">
-			<img class="food" src="@/assets/images/chicken.jpg">
-			<img class="food" src="@/assets/images/chicken.jpg">
-			<img class="food" src="@/assets/images/chicken.jpg">
-			<img class="food" src="@/assets/images/chicken.jpg">
+			<img class="food" src="@/assets/images/food/health_soup/bakuteh.jpg">
+			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
+			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
+			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
+			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
+			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
+			<img class="food" src="@/assets/images/food/chicken_rice/steamed.jpg">
 		</div>
 	</router-link>
 </template>
