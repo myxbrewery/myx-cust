@@ -1,10 +1,12 @@
 <template>
-	<router-link id="shop" class="myx-container waves-effect waves-light" to="/menu">
+	<router-link id="shop" class="myx-container waves-effect waves-light"
+		@click.native="$store.commit('enterShop', shop)"
+		:to="{ name: 'Menu', params: { shop } }" >
 		<FoodBar
-			:icon="icon"
-			:title="title"
-			:price="price"
-			:halal="halal" />
+			:icon="shop.icon"
+			:title="shop.title"
+			:price="shop.price"
+			:halal="shop.halal" />
 
 		<div id="image-bar">
 			<img class="food" v-for="item in thumbnails"
@@ -19,10 +21,7 @@ import FoodBar from '@/components/reusable/FoodBar';
 export default {
 	name: 'Shop',
 	props: {
-		icon: String,
-		title: String,
-		price: Number,  // indicator, takes values from {1, 2, 3}
-		halal: Boolean,
+		shop: Object,
 		thumbnails: Array, // path relative to '/static/img/food/'
 	},
 	components: {

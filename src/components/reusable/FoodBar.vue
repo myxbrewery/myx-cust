@@ -10,7 +10,7 @@
 				{{ halal ? 'Halal' : 'Non-Halal' }}
 			</p>
 		</div>
-		<img class="icon" src="@/assets/images/icons/hourglass.png">
+		<img class="icon" src="/static/img/icons/hourglass.png">
 		<div id="indicator" />
 	</div>
 </template>

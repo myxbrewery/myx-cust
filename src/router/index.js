@@ -45,5 +45,8 @@ export default new Router({
       name: 'Notification',
       component: Notification,
     },
-  ]
+  ],
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
 });

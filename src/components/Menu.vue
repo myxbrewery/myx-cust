@@ -5,7 +5,11 @@
 			header1="Stall menu"
 			header2="Order" />
 		<div class="myx-container">
-			<FoodBar class="elevation-1" style="background-color: white;" />
+			<FoodBar class="elevation-1" style="background-color: white;"
+				:icon="shop.icon"
+				:title="shop.title"
+				:price="shop.price"
+				:halal="shop.halal" />
 			<div class="scrollable">
 				<FoodItem v-for="(item, index) in menu"
 					:key="index"
@@ -14,7 +18,7 @@
 					:thumbnail="item.thumbnail"
 					:price="item.price" />
 			</div>
-			<router-link to="/pay" class="btn waves-effect waves-light">Checkout order</router-link>
+			<router-link to="/pay" class="btn waves-effect waves-light">Checkout</router-link>
 		</div>
 	</div>
 </template>
@@ -38,7 +42,8 @@ export default {
 
 	data() {
 		return {
-			menu
+			shop: this.$route.params.shop,
+			menu,
 		};
 	},
 };

@@ -5,13 +5,10 @@
 			header1="Quick browsing"
 			header2="Stalls" />
 
-		<Shop v-for="(shop, index) in shops"
+		<Shop v-for="(item, index) in shops"
 			:key="index"
-			:icon="shop.icon"
-			:title="shop.title"
-			:price="shop.price"
-			:halal="shop.halal"
-			:thumbnails="shop.thumbnails" />
+			:shop="item.shop"
+			:thumbnails="item.thumbnails" />
 	</div>
 </template>
 
