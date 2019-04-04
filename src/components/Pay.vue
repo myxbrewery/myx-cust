@@ -3,7 +3,7 @@
 		<SearchBar />
 		<div id="content">
 			<h5>Your total is</h5>
-			<h1>$3.50</h1>
+			<h1>${{ amount.toFixed(2) }}</h1>
 			<a href="http://www.dbs.com.sg/personal/mobile/paylink/index.html?tranRef=bca6jKVtAr" target="_blank" @click="redirect">
 				<img src="@/assets/images/paylah.jpg">
 			</a>
@@ -19,6 +19,12 @@ export default {
 	name: 'Pay',
 	components: {
 		SearchBar,
+	},
+
+	data() {
+		return {
+			amount: this.$route.params.amount,
+		};
 	},
 
 	methods: {

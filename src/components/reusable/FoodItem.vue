@@ -7,21 +7,23 @@
 		<div id="food-description">
 			<h6><b>{{ name }}</b></h6>
 			<p>{{ text }}</p>
+
 			<div id="food-price">
 				<p><b>${{ price.toFixed(2) }}</b></p>
 				<div id="food-quantity">
 					<i class="material-icons"
 						v-if="quantity > 0"
-						@click="quantity--">
+						@click="decrement">
 							indeterminate_check_box
 					</i>
 					<p v-if="quantity > 0">{{ quantity }}</p>
 					<i class="material-icons"
-						@click="quantity++">
+						@click="increment">
 							add_box
 					</i>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </template>
@@ -35,6 +37,26 @@ export default {
 		return {
 			quantity: 0,
 		};
+	},
+	mounted() {
+		// for unforeseen navigation into page
+		let cart = this.$store.state.cart;
+		if (this.name in cart) this.quantity = cart[this.name].quantity;
+	},
+
+	methods: {
+		increment() {
+			this.quantity++;
+			this.$store.commit({
+				type: 'addCart',
+				name: this.name,
+				price: this.price,
+			});
+		},
+		decrement() {
+			this.quantity--;
+			this.$store.commit('removeCart', this.name);
+		},
 	},
 };
 </script>

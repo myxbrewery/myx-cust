@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Home from '@/components/Home';
 import Browse from '@/components/Browse';
 import Menu from '@/components/Menu';
+import Checkout from '@/components/Checkout';
 import Pay from '@/components/Pay';
 import Receipt from '@/components/Receipt';
 import Notification from '@/components/Notification';
@@ -28,6 +29,11 @@ export default new Router({
       path: '/menu',
       name: 'Menu',
       component: Menu,
+    },
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: Checkout,
     },
     {
       path: '/pay',

@@ -38,7 +38,9 @@ html, body {
   height: 100%;
 }
 
-body {
+a {
+  text-decoration: none;
+  color: #2c3e50;
 }
 
 #app {
@@ -48,6 +50,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  height: 100%;
 }
 
 .myx-container {
@@ -57,8 +61,24 @@ body {
   margin-top: 1vw;
 }
 
-a {
-  text-decoration: none;
-  color: #2c3e50;
+.btn {
+  background-color: salmon;
+  width: 100%;
+  height: 57px;
+
+  margin-top: 0.5vh;
+  padding: 0.75rem;
+
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
+
+.btn:hover {
+  background-color: salmon;
+}
+
 </style>

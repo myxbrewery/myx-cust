@@ -18,7 +18,18 @@
 					:thumbnail="item.thumbnail"
 					:price="item.price" />
 			</div>
-			<router-link to="/pay" class="btn waves-effect waves-light">Checkout</router-link>
+
+			<a @click="handleCheckout" class="btn waves-effect waves-light">
+				Checkout
+			</a>
+
+			<v-snackbar
+				class="snackbar"
+				v-model="snackbar"
+				:top="true"
+				:timeout="1500" >
+				Cannot checkout empty cart
+			</v-snackbar>
 		</div>
 	</div>
 </template>
@@ -41,28 +52,37 @@ export default {
 	},
 
 	data() {
+		let shop = this.$route.params.shop || this.$store.state.shop;
+		if (!shop) this.$router.push('browse');
+
 		return {
-			shop: this.$route.params.shop,
+			shop,
 			menu,
+			snackbar: false,
 		};
 	},
+
+	methods: {
+		handleCheckout() {
+			let cart = this.$store.state.cart;
+			let numItems = Object.keys(cart).length;
+			if (numItems > 0) this.$router.push('checkout');
+			else this.snackbar = true;
+		}
+	}
 };
 </script>
 
 <style scoped>
 #menu {
+	min-height: 100%;
 	background-color: #efefef;
+	position: relative;
+	padding-bottom: 57px;
 }
 
-.btn {
-	background-color: salmon;
-	width: 100%;
-	height: 100%;
-
-	margin-top: 0.5vh;
-	padding: 0.75rem;
-
-	font-size: 1.5rem;
-	font-weight: 500;
+.snackbar {
+	font-size: 1.25rem;
+	text-align: center;
 }
 </style>
