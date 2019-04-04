@@ -1,0 +1,52 @@
+[
+	{
+		"icon": "chicken",
+		"title": "Chicken Rice",
+		"price": 2,
+		"halal": false,
+		"thumbnails": [
+			"chicken_rice/steamed.jpg",
+			"chicken_rice/roasted.jpg",
+			"chicken_rice/charsiew.jpg",
+			"chicken_rice/belly.jpg",
+			"chicken_rice/fried.jpg",
+			"chicken_rice/wanton.jpg"
+		]
+	},
+	{
+		"icon": "burger",
+		"title": "Western Food",
+		"price": 3,
+		"halal": true,
+		"thumbnails": [
+			"western/fish_chips.jpg",
+			"western/fish_chips.jpg",
+			"western/fish_chips.jpg",
+			"western/fish_chips.jpg"
+		]
+	},
+	{
+		"icon": "soup",
+		"title": "Health Soup",
+		"price": 2,
+		"halal": false,
+		"thumbnails": [
+			"health_soup/bakuteh.jpg",
+			"health_soup/bakuteh.jpg",
+			"health_soup/bakuteh.jpg",
+			"health_soup/bakuteh.jpg"
+		]
+	},
+	{
+		"icon": "bento_tray",
+		"title": "Japanese & Korean",
+		"price": 3,
+		"halal": false,
+		"thumbnails": [
+			"japanese/bento.jpg",
+			"japanese/bento.jpg",
+			"japanese/bento.jpg",
+			"japanese/bento.jpg"
+		]
+	}
+]

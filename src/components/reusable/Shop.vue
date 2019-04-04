@@ -1,14 +1,14 @@
 <template>
 	<router-link id="shop" class="myx-container waves-effect waves-light" to="/menu">
-		<FoodBar />
+		<FoodBar
+			:icon="icon"
+			:title="title"
+			:price="price"
+			:halal="halal" />
 
 		<div id="image-bar">
-			<img class="food" src="/static/images/food/chicken_rice/steamed.jpg">
-			<img class="food" src="/static/images/food/chicken_rice/roasted.jpg">
-			<img class="food" src="/static/images/food/chicken_rice/charsiew.jpg">
-			<img class="food" src="/static/images/food/chicken_rice/belly.jpg">
-			<img class="food" src="/static/images/food/chicken_rice/fried.jpg">
-			<img class="food" src="/static/images/food/chicken_rice/wanton.jpg">
+			<img class="food" v-for="item in thumbnails"
+				:src="`/static/img/food/${item}`" >
 		</div>
 	</router-link>
 </template>
@@ -18,6 +18,13 @@ import FoodBar from '@/components/reusable/FoodBar';
 
 export default {
 	name: 'Shop',
+	props: {
+		icon: String,
+		title: String,
+		price: Number,  // indicator, takes values from {1, 2, 3}
+		halal: Boolean,
+		thumbnails: Array, // path relative to '/static/img/food/'
+	},
 	components: {
 		FoodBar,
 	},

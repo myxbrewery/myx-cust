@@ -1,9 +1,14 @@
 <template>
 	<div id="food-bar">
-		<img class="icon" src="@/assets/images/icons/chicken.svg">
+		<img class="icon" :src="icon_file">
 		<div id="title">
-			<p>CHICKEN RICE</p>
-			<p><span style="color: salmon">$ $</span> $ &nbsp; Non-Halal</p>
+			<p>{{ title.toUpperCase() }}</p>
+			<p>
+				<span style="color: salmon">{{ '$ '.repeat(price) }}</span>
+				<span>{{ '$ '.repeat(3 - price) }}</span>
+				&nbsp; 
+				{{ halal ? 'Halal' : 'Non-Halal' }}
+			</p>
 		</div>
 		<img class="icon" src="@/assets/images/icons/hourglass.png">
 		<div id="indicator" />
@@ -13,6 +18,18 @@
 <script>
 export default {
 	name: 'FoodBar',
+	props: {
+		icon: String,  // path relative to '/static/img/icons/{}.svg'
+		title: String,
+		price: Number,  // indicator, takes values from {1, 2, 3}
+		halal: Boolean,
+	},
+
+	data() {
+		return {
+			icon_file: `/static/img/icons/${this.icon}.svg`,
+		};
+	},
 };
 </script>
 

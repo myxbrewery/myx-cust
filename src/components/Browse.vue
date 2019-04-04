@@ -5,7 +5,13 @@
 			header1="Quick browsing"
 			header2="Stalls" />
 
-		<Shop v-for="shop in Array(5)" />
+		<Shop v-for="(shop, index) in shops"
+			:key="index"
+			:icon="shop.icon"
+			:title="shop.title"
+			:price="shop.price"
+			:halal="shop.halal"
+			:thumbnails="shop.thumbnails" />
 	</div>
 </template>
 
@@ -13,6 +19,7 @@
 import SearchBar from '@/components/reusable/SearchBar';
 import SectionTitle from '@/components/reusable/SectionTitle';
 import Shop from '@/components/reusable/Shop';
+import shops from '@/data/shops.json';
 
 export default {
 	name: 'Browse',
@@ -20,6 +27,12 @@ export default {
 		SearchBar,
 		SectionTitle,
 		Shop,
+	},
+
+	data() {
+		return {
+			shops,
+		};
 	},
 };
 </script>
