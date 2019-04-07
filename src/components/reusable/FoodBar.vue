@@ -40,12 +40,16 @@ export default {
 	display: flex;
 	padding: 1vh;
 	padding-right: 2vh;
+
+	background-color: white;
 }
 
 .icon {
 	margin: 1vh;
 	margin-right: 2vh;
 	height: 3.5vh;
+
+	z-index: 1;
 }
 
 #indicator{
