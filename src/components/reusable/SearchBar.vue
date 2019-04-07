@@ -17,8 +17,9 @@ export default {
 	background-color: salmon;
 	color: white;
 
+	height: 12vh;
 	margin: 0px;
 	padding: 2vh 0px;
-	font-size: 7vh;
+	font-size: 3.33rem;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<router-link id="shop" class="myx-container waves-effect waves-light"
+	<router-link id="shop"
 		@click.native="$store.commit('enterShop', shop)"
 		:to="{ name: 'Menu', params: { shop } }" >
 		<FoodBar
@@ -33,9 +33,7 @@ export default {
 <style scoped>
 #shop {
 	box-shadow: 0px 2px 2px #cccccc;
-	margin-top: 1vw;
 	background-color: #ffffff;
-	border-radius: 0.4vh;
 }
 
 #image-bar {	

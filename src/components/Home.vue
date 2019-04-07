@@ -6,10 +6,10 @@
 			<div id="logo-x">x</div>
 		</div>
 		<div id="login-bar">
-			<router-link to="/browse" class="login-icon waves-effect waves-light">
+			<router-link class="login-icon" to="/browse">
 				<img class="elevation-2" src="@/assets/images/logos/facebook.png" />
 			</router-link>
-			<router-link to="/browse" class="login-icon waves-effect waves-light">
+			<router-link class="login-icon" to="/browse">
 				<img class="elevation-2" src="@/assets/images/logos/google.png" />
 			</router-link>
 		</div>
@@ -25,7 +25,7 @@ export default {
 		$('#login-bar').css('opacity', 0);
 
 		let grow = () => {
-			$('#logo-myx').velocity({ 'font-size': '30vw' }, 500);
+			$('#logo-myx').velocity({ 'font-size': '8rem' }, 500);
 			$('#login-bar').velocity({ opacity: 1 }, 500);
 		}
 		let red = () => $('#logo-m').velocity({ color: 'red' }, {
@@ -44,7 +44,8 @@ export default {
 
 <style scoped>
 #home {
-	margin-top: 20vh;
+	height: 100%;
+	margin-top: 20%;
 }
 
 #logo-myx {
@@ -54,15 +55,19 @@ export default {
 	flex-direction: row;
 	justify-content: center;
 
-	font-size: 20vw;
+	font-size: 5rem;
 }
 
 .login-icon {
-	margin: 5vw;
+	height: 64px;
+	width: 64px;
+
+	margin: 16px;
+	border-radius: 50%;
 }
 
 .login-icon img {
-	max-width: 18vw;
+	width: 64px;
 	border-radius: 50%;
 }
 </style>

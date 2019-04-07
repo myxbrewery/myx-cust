@@ -11,16 +11,13 @@
 			<div id="food-price">
 				<p><b>${{ price.toFixed(2) }}</b></p>
 				<div id="food-quantity">
-					<i class="material-icons"
+					<v-icon
 						v-if="quantity > 0"
 						@click="decrement">
-							indeterminate_check_box
-					</i>
+						indeterminate_check_box
+					</v-icon>
 					<p v-if="quantity > 0">{{ quantity }}</p>
-					<i class="material-icons"
-						@click="increment">
-							add_box
-					</i>
+					<v-icon @click="increment">add_box</v-icon>
 				</div>
 			</div>
 
@@ -110,7 +107,7 @@ export default {
 	justify-content: flex-end;
 }
 
-#food-quantity .material-icons {
+#food-quantity .v-icon {
 	margin: 0px 8px;
 	font-size: 2rem;
 	color: salmon;

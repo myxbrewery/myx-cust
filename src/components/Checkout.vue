@@ -15,10 +15,12 @@
 			</div>
 		</div>
 
-		<router-link class="btn waves-effect waves-light"
-			:to="{ name: 'Pay', params: { amount: computeTotal() } }">
+		<v-btn
+			class="btn"
+			color="red accent-1"
+			@click="makePayment">
 			Pay
-		</router-link>
+		</v-btn>
 	</div>
 </template>
 
@@ -41,6 +43,15 @@ export default {
 			}
 			return sum;
 		},
+		makePayment() {
+			let amount = this.computeTotal();
+			this.$router.push({
+				name: 'Pay',
+				params: {
+					amount,
+				},
+			});
+		},
 	},
 
 	mounted() {
@@ -52,7 +63,6 @@ export default {
 <style scoped>
 #checkout {
 	height: 100%;
-	padding-bottom: 57px;
 
 	display: flex;
 	flex-direction: column;

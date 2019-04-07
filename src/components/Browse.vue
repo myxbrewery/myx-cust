@@ -5,7 +5,7 @@
 			header1="Quick browsing"
 			header2="Stalls" />
 
-		<Shop v-for="(item, index) in shops"
+		<Shop class="shop" v-for="(item, index) in shops"
 			:key="index"
 			:shop="item.shop"
 			:thumbnails="item.thumbnails" />

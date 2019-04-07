@@ -5,7 +5,7 @@
 			header1="Stall menu"
 			header2="Order" />
 		<div class="myx-container">
-			<FoodBar class="elevation-1" style="background-color: white;"
+			<FoodBar class="elevation-1"
 				:icon="shop.icon"
 				:title="shop.title"
 				:price="shop.price"
@@ -19,9 +19,12 @@
 					:price="item.price" />
 			</div>
 
-			<a @click="handleCheckout" class="btn waves-effect waves-light">
+			<v-btn block
+				class="btn"
+				color="red accent-1"
+				@click="handleCheckout">
 				Checkout
-			</a>
+			</v-btn>
 
 			<v-snackbar
 				class="snackbar"
@@ -29,6 +32,7 @@
 				:top="true"
 				:timeout="1500" >
 				Cannot checkout empty cart
+				<v-icon color="white">remove_shopping_cart</v-icon>
 			</v-snackbar>
 		</div>
 	</div>
@@ -78,7 +82,6 @@ export default {
 	min-height: 100%;
 	background-color: #efefef;
 	position: relative;
-	padding-bottom: 57px;
 }
 
 .snackbar {

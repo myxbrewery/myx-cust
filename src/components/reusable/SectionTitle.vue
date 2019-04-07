@@ -16,16 +16,18 @@ export default {
 #section-title {
 	font-family: "Astronaut";
 
-	margin-top: 0.75em;
-	margin-bottom: 0.5em;
-
 	display: flex;
 	flex-direction: row;
+
+	height: 5vh;
+
+	margin-top: 0.75rem;
+	margin-bottom: 0.5rem;
 }
 
 h1, h2 {
 	margin: 0;
-	margin-left: 1vh;
+	margin-left: 8px;
 }
 
 h1 {

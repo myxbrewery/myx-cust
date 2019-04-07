@@ -5,6 +5,7 @@
 </template>
 
 <script>
+/*
 if (!('Notification' in window)) {
   alert('This browser does not support desktop notifications.');
 }
@@ -12,6 +13,7 @@ else {
   Notification.requestPermission()
     .then(permission => console.log);
 }
+*/
 
 export default {
   name: 'App'
@@ -55,26 +57,19 @@ a {
 }
 
 .myx-container {
-  max-width: 97vw;
+  max-width: 97%;
   padding: 0;
   margin: auto;
-  margin-top: 1vw;
+  margin-top: 1%;
 }
 
 .btn {
-  background-color: salmon;
-  width: 100%;
-  height: 57px;
-
-  margin-top: 0.5vh;
-  padding: 0.75rem;
+  margin: 0;
+  margin-top: 5px;
+  height: 8vh;
 
   font-size: 1.5rem;
   font-weight: 500;
-
-  position: absolute;
-  left: 0;
-  bottom: 0;
 }
 
 .btn:hover {
