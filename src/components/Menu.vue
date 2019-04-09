@@ -1,9 +1,10 @@
 <template>
 	<div id="menu">
-		<NavBar />
+		<NavBar :back="true" @back="dialog = true" />
 		<SectionTitle
 			header1="Stall menu"
 			header2="Order" />
+
 		<div class="myx-container">
 			<FoodBar class="elevation-1"
 				:icon="shop.icon"
@@ -20,21 +21,33 @@
 			</div>
 		</div>
 
-			<v-btn block dark
-				class="btn"
-				color="red accent-1"
-				@click="handleCheckout">
-				Checkout
-			</v-btn>
+		<v-btn block dark
+			class="btn"
+			color="red accent-1"
+			@click="handleCheckout">
+			Checkout
+		</v-btn>
 
-			<v-snackbar
-				class="snackbar"
-				v-model="snackbar"
-				:top="true"
-				:timeout="1500" >
+		<v-snackbar
+			v-model="snackbar"
+			:top="true"
+			:timeout="1500" >
 				Cannot checkout empty cart
-				<v-icon color="white">remove_shopping_cart</v-icon>
-			</v-snackbar>
+			<v-icon color="white">remove_shopping_cart</v-icon>
+		</v-snackbar>
+
+		<v-dialog v-model="dialog">
+			<v-card>
+				<v-card-title>Leaving?</v-card-title>
+				<v-card-text>We do not support purchases from multiple stores. Going back will reset your cart.</v-card-text>
+				<v-card-text>Are you sure you want to leave?</v-card-text>
+				<v-card-actions>
+					<v-spacer />
+					<v-btn color="green darken-1" flat @click="dialog = false">Stay here</v-btn>
+					<v-btn color="red darken-1" flat @click="goBack">Go back</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</div>
 </template>
 
@@ -62,7 +75,8 @@ export default {
 		return {
 			shop,
 			menu,
-			snackbar: false,
+			snackbar: false,  // cannot checkout empty cart
+			dialog: false,  // going back will empty your cart
 		};
 	},
 
@@ -72,7 +86,13 @@ export default {
 			let numItems = Object.keys(cart).length;
 			if (numItems > 0) this.$router.push('checkout');
 			else this.snackbar = true;
-		}
+		},
+
+		goBack() {
+			this.dialog = false;
+
+			this.$router.push('browse');
+		},
 	}
 };
 </script>
@@ -80,7 +100,6 @@ export default {
 <style scoped>
 #menu {
 	height: 100%;
-	background-color: #efefef;
 	position: relative;
 }
 
@@ -93,8 +112,20 @@ export default {
 	overflow-y: scroll;
 }
 
-.snackbar {
+.v-snack {
 	font-size: 1.25rem;
 	text-align: center;
 }
+
+.v-card__title {
+	font-size: 2rem;
+}
+
+.v-card__text {
+	padding-top: 0px;
+
+	text-align: left;
+	font-size: 1.25rem;
+}
+
 </style>

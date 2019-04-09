@@ -1,7 +1,7 @@
 <template>
 	<h1 id="title">
-		<div id="icon-div">
-			<v-icon v-ripple>keyboard_arrow_left</v-icon>
+		<div v-if="back" id="icon-div">
+			<v-icon v-ripple @click="$emit('back')">keyboard_arrow_left</v-icon>
 		</div>
 		<p>myx</p>
 	</h1>
@@ -10,6 +10,7 @@
 <script>
 export default {
 	name: 'NavBar',
+	props: ['back'],
 };
 </script>
 

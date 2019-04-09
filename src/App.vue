@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app>
     <router-view/>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -40,11 +40,6 @@ html, body {
   height: 100%;
 }
 
-a {
-  text-decoration: none;
-  color: #2c3e50;
-}
-
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   font-family: 'Noah';
@@ -55,6 +50,10 @@ a {
 
   height: 100%;
   overflow: hidden;
+}
+
+#app a {
+  color: #2c3e50;
 }
 
 .myx-container {
@@ -72,5 +71,4 @@ a {
   font-size: 1.5rem;
   font-weight: 500;
 }
-
 </style>

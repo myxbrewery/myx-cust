@@ -37,10 +37,6 @@ export default {
 </script>
 
 <style scoped>
-#browse {
-  background-color: #efefef;
-}
-
 .scrollable {
 	height: 85vh;
 	overflow-y: scroll;

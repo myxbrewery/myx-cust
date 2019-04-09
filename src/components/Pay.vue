@@ -5,7 +5,7 @@
 			<h5>Your total is</h5>
 			<h1 id="amount">${{ amount.toFixed(2) }}</h1>
 			<a href="http://www.dbs.com.sg/personal/mobile/paylink/index.html?tranRef=bca6jKVtAr" target="_blank" @click="redirect">
-				<img src="@/assets/images/paylah.jpg">
+				<img src="@/assets/images/paylah.png">
 			</a>
 			<h6>Click on above image to pay</h6>
 		</div>
