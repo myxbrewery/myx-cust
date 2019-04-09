@@ -45,7 +45,7 @@ export default {
 <style scoped>
 #home {
 	height: 100%;
-	margin-top: 20%;
+	padding-top: 20vh;
 }
 
 #logo-myx {

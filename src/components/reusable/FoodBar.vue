@@ -35,13 +35,14 @@ export default {
 
 <style scoped>
 #food-bar {
-	font-weight: bold;
-
+	height: 7.5vh;
+	
 	display: flex;
 	padding: 1vh;
 	padding-right: 2vh;
 
 	background-color: white;
+	font-weight: bold;
 }
 
 .icon {

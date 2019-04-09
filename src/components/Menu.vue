@@ -84,6 +84,16 @@ export default {
 	position: relative;
 }
 
+#food-bar {
+	margin-bottom: 4px;
+}
+
+.scrollable {
+	height: 62.5vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
 .snackbar {
 	font-size: 1.25rem;
 	text-align: center;

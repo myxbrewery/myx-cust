@@ -14,12 +14,12 @@ export default {
 
 <style scoped>
 #section-title {
+	height: 5vh;
+
 	font-family: "Astronaut";
 
 	display: flex;
 	flex-direction: row;
-
-	height: 5vh;
 
 	margin-top: 0.75rem;
 	margin-bottom: 0.5rem;
