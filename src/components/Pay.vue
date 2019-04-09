@@ -1,6 +1,7 @@
 <template>
 	<div id="pay">
-		<NavBar />
+		<NavBar :back="true" @back="$router.push('checkout')" />
+
 		<div id="content">
 			<h5>Your total is</h5>
 			<h1 id="amount">${{ amount.toFixed(2) }}</h1>

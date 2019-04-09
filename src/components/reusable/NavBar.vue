@@ -1,7 +1,7 @@
 <template>
 	<h1 id="title">
 		<div v-if="back" id="icon-div">
-			<v-icon v-ripple @click="$emit('back')">keyboard_arrow_left</v-icon>
+			<v-icon v-ripple dark @click="$emit('back')">keyboard_arrow_left</v-icon>
 		</div>
 		<p>myx</p>
 	</h1>
@@ -53,8 +53,6 @@ export default {
 
 .v-icon {
 	font-size: 3rem;
-	color: white;
-
 	border-radius: 50%;
 }
 </style>

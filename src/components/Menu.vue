@@ -108,7 +108,7 @@ export default {
 }
 
 .scrollable {
-	height: 65.5vh;
+	height: 66vh;
 	overflow-y: scroll;
 }
 

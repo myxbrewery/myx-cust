@@ -63,7 +63,7 @@ html, body {
   margin-top: 1%;
 }
 
-.btn {
+.v-btn.btn {
   margin: 0;
   margin-top: 5px;
   height: 8vh;

@@ -64,7 +64,7 @@ export default {
 	flex-direction: row;
 
 	box-shadow: 0px 2px 2px #cccccc;
-	margin-top: 1vw;
+	margin-bottom: 4px;
 	background-color: #ffffff;
 	border-radius: 0.4vh;
 }
@@ -107,7 +107,11 @@ export default {
 	justify-content: flex-end;
 }
 
-#food-quantity .v-icon {
+#customize-button {
+	margin: 0;
+}
+
+.v-icon.material-icons {
 	margin: 0px 8px;
 	font-size: 2rem;
 	color: salmon;

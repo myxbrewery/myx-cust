@@ -1,6 +1,6 @@
 <template>
 	<div id="checkout">
-		<NavBar />
+		<NavBar :back="true" @back="$router.push('menu')" />
 
 		<div class="scrollable">
 			<div class="entry" v-for="(item, key) in this.$store.state.cart">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 
-		<v-btn block dark 
+		<v-btn block dark
 			class="btn"
 			color="red accent-1"
 			@click="makePayment">
