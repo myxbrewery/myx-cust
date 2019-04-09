@@ -72,8 +72,4 @@ a {
   font-weight: 500;
 }
 
-.btn:hover {
-  background-color: salmon;
-}
-
 </style>

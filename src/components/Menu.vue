@@ -18,8 +18,9 @@
 					:thumbnail="item.thumbnail"
 					:price="item.price" />
 			</div>
+		</div>
 
-			<v-btn block
+			<v-btn block dark
 				class="btn"
 				color="red accent-1"
 				@click="handleCheckout">
@@ -34,7 +35,6 @@
 				Cannot checkout empty cart
 				<v-icon color="white">remove_shopping_cart</v-icon>
 			</v-snackbar>
-		</div>
 	</div>
 </template>
 
@@ -79,7 +79,7 @@ export default {
 
 <style scoped>
 #menu {
-	min-height: 100%;
+	height: 100%;
 	background-color: #efefef;
 	position: relative;
 }
@@ -89,8 +89,7 @@ export default {
 }
 
 .scrollable {
-	height: 62.5vh;
-	overflow-x: hidden;
+	height: 65.5vh;
 	overflow-y: scroll;
 }
 

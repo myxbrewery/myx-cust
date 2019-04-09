@@ -2,10 +2,12 @@
 	<div id="checkout">
 		<SearchBar />
 
-		<div class="entry" v-for="(item, key) in this.$store.state.cart">
-			<p class="quantity">{{ item.quantity }}</p>
-			<p class="item">{{ key }}</p>
-			<p class="price">${{ (item.price * item.quantity).toFixed(2) }}</p>
+		<div class="scrollable">
+			<div class="entry" v-for="(item, key) in this.$store.state.cart">
+				<p class="quantity">{{ item.quantity }}</p>
+				<p class="item">{{ key }}</p>
+				<p class="price">${{ (item.price * item.quantity).toFixed(2) }}</p>
+			</div>
 		</div>
 
 		<div id="total-container">
@@ -15,7 +17,7 @@
 			</div>
 		</div>
 
-		<v-btn
+		<v-btn block dark 
 			class="btn"
 			color="red accent-1"
 			@click="makePayment">
@@ -63,9 +65,11 @@ export default {
 <style scoped>
 #checkout {
 	height: 100%;
+}
 
-	display: flex;
-	flex-direction: column;
+.scrollable {
+	height: 74vh;
+	overflow-y: scroll;
 }
 
 .entry {
@@ -100,6 +104,8 @@ export default {
 }
 
 #total-container {
+	height: 7vh;
+
 	flex: 1;
 	display: flex;
 	flex-direction: column;
