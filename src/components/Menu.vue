@@ -1,6 +1,6 @@
 <template>
 	<div id="menu">
-		<SearchBar />
+		<NavBar />
 		<SectionTitle
 			header1="Stall menu"
 			header2="Order" />
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import SearchBar from '@/components/reusable/SearchBar';
+import NavBar from '@/components/reusable/NavBar';
 import SectionTitle from '@/components/reusable/SectionTitle';
 import FoodBar from '@/components/reusable/FoodBar';
 import FoodItem from '@/components/reusable/FoodItem';
@@ -49,7 +49,7 @@ import menu from '@/data/menu.json';
 export default {
 	name: 'Menu',
 	components: {
-		SearchBar,
+		NavBar,
 		SectionTitle,
 		FoodBar,
 		FoodItem,

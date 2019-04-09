@@ -1,6 +1,6 @@
 <template>
 	<div id="checkout">
-		<SearchBar />
+		<NavBar />
 
 		<div class="scrollable">
 			<div class="entry" v-for="(item, key) in this.$store.state.cart">
@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import SearchBar from '@/components/reusable/SearchBar';
+import NavBar from '@/components/reusable/NavBar';
 
 export default {
 	name: 'Checkout',
 	components: {
-		SearchBar,
+		NavBar,
 	},
 
 	methods: {

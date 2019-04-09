@@ -1,19 +1,21 @@
 <template>
 	<div id="browse">
-		<SearchBar />
+		<NavBar />
 		<SectionTitle
 			header1="Quick browsing"
 			header2="Stalls" />
 
-		<Shop class="shop" v-for="(item, index) in shops"
-			:key="index"
-			:shop="item.shop"
-			:thumbnails="item.thumbnails" />
+		<div class="scrollable">
+			<Shop class="shop" v-for="(item, index) in shops"
+				:key="index"
+				:shop="item.shop"
+				:thumbnails="item.thumbnails" />
+		</div>
 	</div>
 </template>
 
 <script>
-import SearchBar from '@/components/reusable/SearchBar';
+import NavBar from '@/components/reusable/NavBar';
 import SectionTitle from '@/components/reusable/SectionTitle';
 import Shop from '@/components/reusable/Shop';
 import shops from '@/data/shops.json';
@@ -21,7 +23,7 @@ import shops from '@/data/shops.json';
 export default {
 	name: 'Browse',
 	components: {
-		SearchBar,
+		NavBar,
 		SectionTitle,
 		Shop,
 	},
@@ -37,5 +39,10 @@ export default {
 <style scoped>
 #browse {
   background-color: #efefef;
+}
+
+.scrollable {
+	height: 85vh;
+	overflow-y: scroll;
 }
 </style>

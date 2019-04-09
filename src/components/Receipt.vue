@@ -1,6 +1,6 @@
 <template>
 	<div id="receipt">
-		<SearchBar />
+		<NavBar />
 		<h3>Queue No.</h3>
 		<h1>187</h1>
 		<h6>You will be notified when your order<br>is ready for collection.</h6>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import SearchBar from '@/components/reusable/SearchBar';
+import NavBar from '@/components/reusable/NavBar';
 
 export default {
 	name: 'Receipt',
 	components: {
-		SearchBar,
+		NavBar,
 	},
 }
 </script>

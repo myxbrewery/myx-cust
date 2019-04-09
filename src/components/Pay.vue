@@ -1,6 +1,6 @@
 <template>
 	<div id="pay">
-		<SearchBar />
+		<NavBar />
 		<div id="content">
 			<h5>Your total is</h5>
 			<h1 id="amount">${{ amount.toFixed(2) }}</h1>
@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import SearchBar from '@/components/reusable/SearchBar';
+import NavBar from '@/components/reusable/NavBar';
 
 export default {
 	name: 'Pay',
 	components: {
-		SearchBar,
+		NavBar,
 	},
 
 	data() {
