@@ -15,6 +15,14 @@ else {
 }
 */
 
+function setVH() {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+setVH();
+window.addEventListener('resize', setVH);
+
 export default {
   name: 'App'
 }
@@ -36,7 +44,12 @@ export default {
   src: url("/static/css/fonts/Noah.otf") format("opentype");
 }
 
-html, body {
+html {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+body {
   height: 100%;
 }
 
@@ -66,7 +79,7 @@ html, body {
 .v-btn.btn {
   margin: 0;
   margin-top: 5px;
-  height: 8vh;
+  height: 8%;
 
   font-size: 1.5rem;
   font-weight: 500;

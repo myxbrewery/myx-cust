@@ -37,8 +37,12 @@ export default {
 </script>
 
 <style scoped>
+#browse {
+	height: 100%;
+}
+
 .scrollable {
-	height: 85vh;
+	height: 85%;
 	overflow-y: scroll;
 }
 </style>

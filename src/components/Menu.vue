@@ -5,20 +5,18 @@
 			header1="Stall menu"
 			header2="Order" />
 
-		<div class="myx-container">
-			<FoodBar class="elevation-1"
-				:icon="shop.icon"
-				:title="shop.title"
-				:price="shop.price"
-				:halal="shop.halal" />
-			<div class="scrollable">
-				<FoodItem v-for="(item, index) in menu"
-					:key="index"
-					:name="item.name"
-					:text="item.text"
-					:thumbnail="item.thumbnail"
-					:price="item.price" />
-			</div>
+		<FoodBar class="elevation-1" style="height: 7.5%"
+			:icon="shop.icon"
+			:title="shop.title"
+			:price="shop.price"
+			:halal="shop.halal" />
+		<div class="scrollable">
+			<FoodItem v-for="(item, index) in menu"
+				:key="index"
+				:name="item.name"
+				:text="item.text"
+				:thumbnail="item.thumbnail"
+				:price="item.price" />
 		</div>
 
 		<v-btn block dark
@@ -108,7 +106,7 @@ export default {
 }
 
 .scrollable {
-	height: 66vh;
+	height: 65.5vh;
 	overflow-y: scroll;
 }
 

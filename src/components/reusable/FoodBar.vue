@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 #food-bar {
-	height: 7.5vh;
+	height: 8.8%;
 	
 	display: flex;
 	padding: 1vh;

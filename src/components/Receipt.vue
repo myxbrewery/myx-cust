@@ -19,6 +19,10 @@ export default {
 </script>
 
 <style scoped>
+#receipt {
+	height: 100%;
+}
+
 h3 {
 	margin-top: 15vh;
 }

@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 #section-title {
-	height: 5vh;
+	height: 5%;
 
 	font-family: "Astronaut";
 

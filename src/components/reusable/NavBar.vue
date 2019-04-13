@@ -23,7 +23,7 @@ export default {
 
 	background-color: salmon;
 
-	height: 10vh;
+	height: 10%;
 	margin: 0px;
 
 	font-size: 3.33rem;
