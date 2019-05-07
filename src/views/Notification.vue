@@ -29,6 +29,7 @@ export default {
 
 <style scoped>
 #notification {
+  height: 100%;
   margin-top: 60px;
 }
 </style>

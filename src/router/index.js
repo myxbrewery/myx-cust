@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import Router from 'vue-router';
-import Home from '@/components/Home';
-import Browse from '@/components/Browse';
-import Menu from '@/components/Menu';
-import Checkout from '@/components/Checkout';
-import Pay from '@/components/Pay';
-import Receipt from '@/components/Receipt';
-import Notification from '@/components/Notification';
+import Home from '@/views/Home';
+import Browse from '@/views/Browse';
+import Menu from '@/views/Menu';
+import Checkout from '@/views/Checkout';
+import Pay from '@/views/Pay';
+import Receipt from '@/views/Receipt';
+import Notification from '@/views/Notification';
 import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify);

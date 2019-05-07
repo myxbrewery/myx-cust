@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import FoodBar from '@/components/reusable/FoodBar';
+import FoodBar from '@/components/FoodBar';
 
 export default {
 	name: 'Shop',

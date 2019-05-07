@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import NavBar from '@/components/reusable/NavBar';
-import SectionTitle from '@/components/reusable/SectionTitle';
-import FoodBar from '@/components/reusable/FoodBar';
-import FoodItem from '@/components/reusable/FoodItem';
+import NavBar from '@/components/NavBar';
+import SectionTitle from '@/components/SectionTitle';
+import FoodBar from '@/components/FoodBar';
+import FoodItem from '@/components/FoodItem';
 
 import menu from '@/data/menu.json';
 

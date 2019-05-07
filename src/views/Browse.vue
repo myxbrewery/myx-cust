@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import NavBar from '@/components/reusable/NavBar';
-import SectionTitle from '@/components/reusable/SectionTitle';
-import Shop from '@/components/reusable/Shop';
+import NavBar from '@/components/NavBar';
+import SectionTitle from '@/components/SectionTitle';
+import Shop from '@/components/Shop';
 import shops from '@/data/shops.json';
 
 export default {
