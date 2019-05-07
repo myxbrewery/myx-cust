@@ -6,19 +6,16 @@
 
 		<div id="food-description">
 			<h6><b>{{ name }}</b></h6>
-			<p>{{ text }}</p>
+			<p id="text">{{ text }}</p>
 
-			<div id="food-price">
-				<p><b>${{ price.toFixed(2) }}</b></p>
-				<div id="food-quantity">
-					<v-icon
-						v-if="quantity > 0"
-						@click="decrement">
-						indeterminate_check_box
-					</v-icon>
-					<p v-if="quantity > 0">{{ quantity }}</p>
-					<v-icon @click="increment">add_box</v-icon>
-				</div>
+			<p id="price"><b>${{ price.toFixed(2) }}</b></p>
+			<div id="btn-container">
+				<v-btn outline small
+					id="customize-button"
+					color="red accent-2" >
+					Customize
+				</v-btn>
+				<v-icon v-ripple @click="increment" style="border-radius: 3px">add_box</v-icon>
 			</div>
 
 		</div>
@@ -88,23 +85,20 @@ export default {
 	text-align: left;
 }
 
-#food-description p {
+#food-description #text {
 	font-color: #303030;
+	margin: 0;
 }
 
-#food-price {
-	display: flex;
-	justify-content: space-between;
+#food-description #price {
+	margin: 8px 0px;
 }
 
-#food-price p {
-	margin: 0px;
-}
-
-#food-quantity {
+#btn-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
+	align-items: center;
 }
 
 #customize-button {
@@ -115,11 +109,5 @@ export default {
 	margin: 0px 8px;
 	font-size: 2rem;
 	color: salmon;
-}
-
-#food-quantity p {
-	width: 1rem;
-	text-align: center;
-	line-height: 2rem;
 }
 </style>
