@@ -10,14 +10,12 @@
 			:title="shop.title"
 			:price="shop.price"
 			:halal="shop.halal" />
-		<div class="scrollable">
-			<FoodItem v-for="(item, index) in menu"
-				:key="index"
-				:name="item.name"
-				:text="item.text"
-				:thumbnail="item.thumbnail"
-				:price="item.price" />
-		</div>
+		<FoodItem v-for="(item, index) in menu"
+			:key="index"
+			:name="item.name"
+			:text="item.text"
+			:thumbnail="item.thumbnail"
+			:price="item.price" />
 
 		<v-btn block dark
 			class="btn"
@@ -103,11 +101,6 @@ export default {
 
 #food-bar {
 	margin-bottom: 4px;
-}
-
-.scrollable {
-	height: 65.5vh;
-	overflow-y: scroll;
 }
 
 .v-snack {
