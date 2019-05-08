@@ -87,6 +87,7 @@ export default {
 		goBack() {
 			this.dialog = false;
 
+			this.$store.commit('exitMenu');
 			this.$router.push('browse');
 		},
 	}

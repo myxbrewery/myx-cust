@@ -49,7 +49,10 @@ export default {
 		},
 		decrement() {
 			this.quantity--;
-			this.$store.commit('removeCart', this.name);
+			this.$store.commit({
+				type: 'removeCart',
+				name: this.name
+			});
 		},
 	},
 };

@@ -24,5 +24,9 @@ export default new Vuex.Store({
 			if (name in state.cart) state.cart[name].quantity--;
 			if (state.cart[name].quantity === 0) delete state.cart[name];
 		},
+		exitMenu(state) {
+			state.shop = null;
+			state.cart = {};
+		},
 	},
 });
