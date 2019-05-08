@@ -1,18 +1,20 @@
 <template>
-	<router-link id="shop"
-		@click.native="$store.commit('enterShop', shop)"
-		:to="{ name: 'Menu', params: { shop } }" >
-		<FoodBar
-			:icon="shop.icon"
-			:title="shop.title"
-			:price="shop.price"
-			:halal="shop.halal" />
+	<div id="shop">
+		<router-link
+			@click.native="$store.commit('enterShop', shop)"
+			:to="{ name: 'Menu', params: { shop } }" >
+			<FoodBar
+				:icon="shop.icon"
+				:title="shop.title"
+				:price="shop.price"
+				:halal="shop.halal" />
 
-		<div id="image-bar">
-			<img class="food" v-for="item in thumbnails"
-				:src="`/static/img/food/${item}`" >
-		</div>
-	</router-link>
+			<div id="image-bar">
+				<img class="food" v-for="item in thumbnails"
+					:src="`/static/img/food/${item}`" >
+			</div>
+		</router-link>
+	</div>
 </template>
 
 <script>
@@ -32,8 +34,9 @@ export default {
 
 <style scoped>
 #shop {
-	box-shadow: 0px 2px 2px #cccccc;
+	margin-bottom: 4px;
 	background-color: #ffffff;
+	box-shadow: 0px 2px 2px #cccccc;
 }
 
 #image-bar {	

@@ -1,6 +1,6 @@
 <template>
 	<div id="food-item">
-		<div id="food-image">
+		<div id="food-image" v-if="thumbnail">
 			<img :src="thumbnail">
 		</div>
 
@@ -63,10 +63,11 @@ export default {
 	display: flex;
 	flex-direction: row;
 
-	box-shadow: 0px 2px 2px #cccccc;
 	margin-bottom: 4px;
+	padding: 8px;
 	background-color: #ffffff;
 	border-radius: 0.4vh;
+	box-shadow: 0px 2px 2px #cccccc;
 }
 
 #food-image {
