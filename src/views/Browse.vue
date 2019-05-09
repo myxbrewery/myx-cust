@@ -5,12 +5,10 @@
 			header1="Quick browsing"
 			header2="Stalls" />
 
-		<div class="scrollable">
-			<Shop class="shop" v-for="(item, index) in shops"
-				:key="index"
-				:shop="item.shop"
-				:thumbnails="item.thumbnails" />
-		</div>
+		<Shop class="shop" v-for="(item, index) in shops"
+			:key="index"
+			:shop="item.shop"
+			:thumbnails="item.thumbnails" />
 	</div>
 </template>
 
@@ -39,10 +37,5 @@ export default {
 <style scoped>
 #browse {
 	height: 100%;
-}
-
-.scrollable {
-	height: 85%;
-	overflow-y: scroll;
 }
 </style>
