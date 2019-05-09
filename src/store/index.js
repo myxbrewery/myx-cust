@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
+		serverRoot: 'http://18.138.9.151:11235',
 		shop: null,
 		cart: {},
 	},

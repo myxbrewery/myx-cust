@@ -2,16 +2,15 @@
 	<div id="shop">
 		<router-link
 			@click.native="$store.commit('enterShop', shop)"
-			:to="{ name: 'Menu', params: { shop } }" >
+			:to="{ name: 'Menu', params: { shop } }">
 			<FoodBar
 				:icon="shop.icon"
-				:title="shop.title"
-				:price="shop.price"
-				:halal="shop.halal" />
+				:name="shop.name"
+				:halal="shop.halal"
+				:open="shop.open" />
 
-			<div id="image-bar">
-				<img class="food" v-for="item in thumbnails"
-					:src="`/static/img/food/${item}`" >
+			<div id="imageContainer">
+				<img class="food" :src="shop.image_url">
 			</div>
 		</router-link>
 	</div>
@@ -24,11 +23,13 @@ export default {
 	name: 'Shop',
 	props: {
 		shop: Object,
-		thumbnails: Array, // path relative to '/static/img/food/'
 	},
 	components: {
 		FoodBar,
 	},
+	created() {
+		if (!this.shop.image_url) this.shop.image_url = 'https://mtc1-dydfxmh.netdna-ssl.com/wp-content/uploads/2016/08/22168498135_84560366eb_k-1300x866.jpg';
+	}
 };
 </script>
 
@@ -39,26 +40,12 @@ export default {
 	box-shadow: 0px 2px 2px #cccccc;
 }
 
-#image-bar {	
+#imageContainer {
 	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-
-	width: 100%;
-	padding: 0px;
-
-	overflow: scroll;
-	scrollbar-width: none;
-	-ms-overflow-style: none;
-}
-
-#image-bar::-webkit-scrollbar { 
-	width: 0;
-	height: 0;
+	justify-content: flex-start;
 }
 
 .food {
-	margin: 0px 0px;
 	height: 25vh;
 	width: auto;
 }

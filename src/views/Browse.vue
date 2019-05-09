@@ -5,10 +5,9 @@
 			header1="Quick browsing"
 			header2="Stalls" />
 
-		<Shop class="shop" v-for="(item, index) in shops"
+		<Shop class="shop" v-for="(shop, index) in shops"
 			:key="index"
-			:shop="item.shop"
-			:thumbnails="item.thumbnails" />
+			:shop="shop" />
 	</div>
 </template>
 
@@ -16,7 +15,6 @@
 import NavBar from '@/components/NavBar';
 import SectionTitle from '@/components/SectionTitle';
 import Shop from '@/components/Shop';
-import shops from '@/data/shops.json';
 
 export default {
 	name: 'Browse',
@@ -28,8 +26,16 @@ export default {
 
 	data() {
 		return {
-			shops,
+			shops: [],
 		};
+	},
+
+	created() {
+		let root = this.$store.state.serverRoot;
+		let url = `${root}/stalls/1`;
+		fetch(url)
+		.then(response => response.json())
+		.then(json => { this.shops = json });
 	},
 };
 </script>
