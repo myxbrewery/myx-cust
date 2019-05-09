@@ -1,9 +1,18 @@
 <template>
 	<div id="food-item">
+
 		<div v-if="image_url" id="food-image">
-			<img :src="image_url">
+			<!-- badge over image when image is present -->
+			<v-badge left overlap color="red">
+				<template v-slot:badge>
+					<span v-if="quantity">{{ quantity }}</span>
+				</template>
+
+				<img :src="image_url">
+			</v-badge>
 		</div>
 
+		<!-- render items in top/bottom when image is present -->
 		<div v-if="image_url" id="food-description">
 			<h6><b>{{ name }}</b></h6>
 			<p id="price"><b>${{ price.toFixed(2) }}</b></p>
@@ -18,9 +27,18 @@
 			</div>
 		</div>
 
+		<!-- render items in left/right when image is present -->
 		<div v-if="!image_url" id="food-description">
-			<h6><b>{{ name }}</b></h6>
-			<p id="price"><b>${{ price.toFixed(2) }}</b></p>
+			<!-- badge over text if there is no image -->
+			<v-badge left overlap color="red">
+				<template v-slot:badge>
+					<span v-if="quantity">{{ quantity }}</span>
+				</template>
+
+				<h6><b>{{ name }}</b></h6>
+				<p id="price"><b>${{ price.toFixed(2) }}</b></p>
+			</v-badge>
+
 		</div>
 		<div v-if="!image_url" id="btn-container">
 			<v-btn outline small

@@ -80,9 +80,6 @@ export default {
 		fetch(url)
 		.then(response => response.json())
 		.then(json => { this.menu = json })
-		.then(() => {
-			console.log(this.menu);
-		});
 	},
 
 	methods: {
