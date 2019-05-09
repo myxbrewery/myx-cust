@@ -1,14 +1,13 @@
 <template>
 	<div id="food-item">
-		<div id="food-image" v-if="thumbnail">
-			<img :src="thumbnail">
+		<div v-if="image_url" id="food-image">
+			<img :src="image_url">
 		</div>
 
-		<div id="food-description">
+		<div v-if="image_url" id="food-description">
 			<h6><b>{{ name }}</b></h6>
-			<p id="text">{{ text }}</p>
-
 			<p id="price"><b>${{ price.toFixed(2) }}</b></p>
+
 			<div id="btn-container">
 				<v-btn outline small
 					id="customize-button"
@@ -17,7 +16,19 @@
 				</v-btn>
 				<v-icon v-ripple @click="increment" style="border-radius: 3px">add_box</v-icon>
 			</div>
+		</div>
 
+		<div v-if="!image_url" id="food-description">
+			<h6><b>{{ name }}</b></h6>
+			<p id="price"><b>${{ price.toFixed(2) }}</b></p>
+		</div>
+		<div v-if="!image_url" id="btn-container">
+			<v-btn outline small
+				id="customize-button"
+				color="red accent-2" >
+				Customize
+			</v-btn>
+			<v-icon v-ripple @click="increment" style="border-radius: 3px">add_box</v-icon>
 		</div>
 	</div>
 </template>
@@ -25,13 +36,14 @@
 <script>
 export default {
 	name: 'FoodItem',
-	props: ['name', 'text', 'thumbnail', 'price'],
+	props: ['name', 'image_url', 'price'],
 
 	data() {
 		return {
 			quantity: 0,
 		};
 	},
+
 	mounted() {
 		// for unforeseen navigation into page
 		let cart = this.$store.state.cart;
@@ -87,11 +99,6 @@ export default {
 	margin: 8px;
 
 	text-align: left;
-}
-
-#food-description #text {
-	font-color: #303030;
-	margin: 0;
 }
 
 #food-description #price {

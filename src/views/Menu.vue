@@ -7,15 +7,14 @@
 
 		<FoodBar class="elevation-1" style="height: 7.5%"
 			:icon="shop.icon"
-			:title="shop.title"
-			:price="shop.price"
-			:halal="shop.halal" />
-		<FoodItem v-for="(item, index) in menu"
-			:key="index"
+			:name="shop.name"
+			:halal="shop.halal"
+			:open="shop.open" />
+		<FoodItem v-for="item in menu"
+			:key="item.id"
 			:name="item.name"
-			:text="item.text"
-			:thumbnail="item.thumbnail"
-			:price="item.price" />
+			:image_url="item.image_url"
+			:price="parseFloat(item.school_price)" />
 
 		<v-btn block dark
 			class="btn"
@@ -53,8 +52,6 @@ import SectionTitle from '@/components/SectionTitle';
 import FoodBar from '@/components/FoodBar';
 import FoodItem from '@/components/FoodItem';
 
-import menu from '@/data/menu.json';
-
 export default {
 	name: 'Menu',
 	components: {
@@ -70,10 +67,22 @@ export default {
 
 		return {
 			shop,
-			menu,
+			menu: [],
 			snackbar: false,  // cannot checkout empty cart
 			dialog: false,  // going back will empty your cart
 		};
+	},
+
+	mounted() {
+		let root = this.$store.state.serverRoot;
+		let { location, id } = this.shop;
+		let url = `${root}/stallmenu/${location}/${id}`;
+		fetch(url)
+		.then(response => response.json())
+		.then(json => { this.menu = json })
+		.then(() => {
+			console.log(this.menu);
+		});
 	},
 
 	methods: {
