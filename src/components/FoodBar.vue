@@ -10,8 +10,12 @@
 				{{ halal ? 'Halal' : 'Non-Halal' }}
 			</p>
 		</div>
-		<img class="icon" src="/static/img/icons/hourglass.png">
-		<div id="indicator" />
+
+		<div id="indicator">
+			<svg height="16" width="16">
+				<circle cx="8" cy="8" r="8" :fill="open ? '#6fb75b' : 'red'" />
+			</svg>
+		</div>
 	</div>
 </template>
 
@@ -54,11 +58,9 @@ export default {
 }
 
 #indicator{
-  border-radius: 50%;
-  background-color: #6fb75b;
-  height: 2vh;
-  width: 2vh;
-  margin-top: 1.5vh;
+	height: 16px;
+	width: 16px;
+	margin: auto;
 }
 
 #title {
