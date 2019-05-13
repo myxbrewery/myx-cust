@@ -20,7 +20,8 @@
 			<div id="btn-container">
 				<v-btn outline small
 					id="customize-button"
-					color="red accent-2" >
+					color="red accent-2"
+					@click="$emit('customizeFood')">
 					Customize
 				</v-btn>
 				<v-icon v-ripple @click="increment" style="border-radius: 3px">add_box</v-icon>
@@ -43,7 +44,8 @@
 		<div v-if="!image_url" id="btn-container">
 			<v-btn outline small
 				id="customize-button"
-				color="red accent-2" >
+				color="red accent-2"
+				@click="$emit('customizeFood')">
 				Customize
 			</v-btn>
 			<v-icon v-ripple @click="increment" style="border-radius: 3px">add_box</v-icon>

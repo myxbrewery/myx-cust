@@ -12,7 +12,8 @@
 			:open="shop.open" />
 		<FoodItem v-for="item in menu"
 			:key="item.id"
-			:item="item" />
+			:item="item"
+			@customizeFood="customize(item)" />
 
 		<v-btn block dark
 			class="btn"
@@ -94,7 +95,11 @@ export default {
 			this.$store.commit('exitMenu');
 			this.$router.push('browse');
 		},
-	}
+
+		customize(item) {
+			console.log('customize', item.name);
+		},
+	},
 };
 </script>
 
