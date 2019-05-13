@@ -7,6 +7,10 @@ export default new Vuex.Store({
 	state: {
 		// serverRoot: 'http://18.138.9.151:11235',
 		serverRoot: 'http://10.12.254.221:11235',
+		customer: {
+			id: 123912323,
+			type: 'school',
+		},
 		shop: null,
 		cart: [],
 	},

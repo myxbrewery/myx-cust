@@ -64,6 +64,40 @@ export default {
 		},
 		makePayment() {
 			let amount = this.computeTotal();
+
+			let orders = [];
+			for (let item of this.$store.state.cart) {
+				let newObj = {
+					base_price: parseFloat(item.school_price),
+					total_price: parseFloat(item.school_price),
+					compulsory_options: {},
+					optional_options: {},
+				};
+				Object.assign(item, newObj);
+				orders.push(item);
+			}
+			
+			let data = {
+				metadata: {
+					// all orders should have same location and stall IDs
+					location_id: orders[0].location_id,
+					stall_id: orders[0].stall_id,
+					client_type: this.$store.state.customer.type,
+					total_payment: amount,
+					customer_id: this.$store.state.customer.id,
+				},
+				orders,
+			};
+			fetch(`${this.$store.state.serverRoot}/order`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'					
+				},
+				body: JSON.stringify(data),
+			})
+			.then(response => response.json())
+			.then(console.log);
+
 			this.$router.push({
 				name: 'Pay',
 				params: {
