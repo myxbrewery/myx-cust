@@ -27,9 +27,6 @@ export default {
 	components: {
 		FoodBar,
 	},
-	created() {
-		if (!this.shop.image_url) this.shop.image_url = 'https://mtc1-dydfxmh.netdna-ssl.com/wp-content/uploads/2016/08/22168498135_84560366eb_k-1300x866.jpg';
-	}
 };
 </script>
 

@@ -96,13 +96,15 @@ export default {
 				body: JSON.stringify(data),
 			})
 			.then(response => response.json())
-			.then(console.log);
-
-			this.$router.push({
-				name: 'Pay',
-				params: {
+			.then(json => {
+				let paylah_url = json.paylah_url.url;
+				let receipt_id = json.receipt_id;
+				let params = {
 					amount,
-				},
+					paylah_url,
+					receipt_id,
+				};
+				this.$router.push({ name: 'Pay', params });
 			});
 		},
 	},

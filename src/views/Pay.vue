@@ -5,7 +5,7 @@
 		<div id="content">
 			<h5>Your total is</h5>
 			<h1 id="amount">${{ amount.toFixed(2) }}</h1>
-			<a href="http://www.dbs.com.sg/personal/mobile/paylink/index.html?tranRef=bca6jKVtAr" target="_blank" @click="redirect">
+			<a :href="paylah_url" target="_blank" @click="redirect">
 				<img src="@/assets/images/paylah.png">
 			</a>
 			<h6>Click on above image to pay</h6>
@@ -23,15 +23,24 @@ export default {
 	},
 
 	data() {
-		return {
-			amount: this.$route.params.amount,
-		};
+		return this.$route.params;
 	},
 
 	methods: {
 		redirect() {
-			this.$router.push('/receipt');
+			this.$router.push({
+				name: 'Receipt',
+				params: {
+					receipt_id: this.receipt_id,
+				},
+			});
 		},
+	},
+
+	created() {
+		let params = this.$route.params;
+		let paramsEmpty = Object.keys(params).length === 0;
+		if (paramsEmpty) this.$router.push('/checkout');
 	},
 };
 </script>

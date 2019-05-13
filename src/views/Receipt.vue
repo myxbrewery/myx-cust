@@ -2,7 +2,7 @@
 	<div id="receipt">
 		<NavBar />
 		<h3>Queue No.</h3>
-		<h1>187</h1>
+		<h1>{{ this.$route.params.receipt_id }}</h1>
 		<h6>You will be notified when your order<br>is ready for collection.</h6>
 	</div>
 </template>
