@@ -12,9 +12,7 @@
 			:open="shop.open" />
 		<FoodItem v-for="item in menu"
 			:key="item.id"
-			:name="item.name"
-			:image_url="item.image_url"
-			:price="parseFloat(item.school_price)" />
+			:item="item" />
 
 		<v-btn block dark
 			class="btn"
@@ -85,7 +83,7 @@ export default {
 	methods: {
 		handleCheckout() {
 			let cart = this.$store.state.cart;
-			let numItems = Object.keys(cart).length;
+			let numItems = cart.length;
 			if (numItems > 0) this.$router.push('checkout');
 			else this.snackbar = true;
 		},

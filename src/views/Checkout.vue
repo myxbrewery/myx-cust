@@ -3,7 +3,7 @@
 		<NavBar :back="true" @back="$router.push('menu')" />
 
 		<div class="scrollable">
-			<div class="entry" v-for="(item, key) in this.$store.state.cart">
+			<div class="entry" v-for="(item, key) in consolidateCart()">
 				<p class="quantity">{{ item.quantity }}</p>
 				<p class="item">{{ key }}</p>
 				<p class="price">${{ (item.price * item.quantity).toFixed(2) }}</p>
@@ -37,13 +37,30 @@ export default {
 
 	methods: {
 		computeTotal() {
-			let cart = this.$store.state.cart;
+			let consolidated = this.consolidateCart();
 			let sum = 0;
-			for (let item in cart) {
-				let { price, quantity } = cart[item];
-				sum += price * quantity;
+			for (let key in consolidated) {
+				let item = consolidated[key];
+				sum += item.price * item.quantity;
 			}
 			return sum;
+		},
+		consolidateCart() {
+			// TODO - resolve issues when customized items are introduced
+			let cart = this.$store.state.cart;
+			let consolidated = {};
+			for (let item of cart) {
+				let { name } = item;
+				if (name in consolidated) consolidated[name].quantity++;
+				else {
+					let data = {
+						price: parseFloat(item.school_price),
+						quantity: 1,
+					};
+					consolidated[name] = data;
+				}
+			}
+			return consolidated;
 		},
 		makePayment() {
 			let amount = this.computeTotal();

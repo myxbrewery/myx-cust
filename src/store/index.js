@@ -5,9 +5,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		serverRoot: 'http://18.138.9.151:11235',
+		// serverRoot: 'http://18.138.9.151:11235',
+		serverRoot: 'http://10.12.254.221:11235',
 		shop: null,
-		cart: {},
+		cart: [],
+	},
+
+	getters: {
+		getFoodQuantityByName: (state) => (name) => {
+			let qty = 0;
+			for (let obj of state.cart) {
+				if (obj.name === name) qty++;
+			}
+			return qty;
+		},
 	},
 
 	mutations: {
@@ -16,18 +27,12 @@ export default new Vuex.Store({
 		},
 
 		addCart(state, item) {
-			let { name, price } = item;
-			
-			if (name in state.cart) state.cart[name].quantity++;
-			else state.cart[name] = { quantity: 1, price, };
+			state.cart.push(item);
 		},
-		removeCart(state, name) {
-			if (name in state.cart) state.cart[name].quantity--;
-			if (state.cart[name].quantity === 0) delete state.cart[name];
-		},
+
 		exitMenu(state) {
 			state.shop = null;
-			state.cart = {};
+			state.cart = [];
 		},
 	},
 });

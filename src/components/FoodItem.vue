@@ -54,35 +54,28 @@
 <script>
 export default {
 	name: 'FoodItem',
-	props: ['name', 'image_url', 'price'],
+	props: ['item'],
 
 	data() {
+		// these 3 are used for HTML rendering
+		let { name, image_url } = this.item;
+		let price = parseFloat(this.item.school_price);
 		return {
-			quantity: 0,
+			name,
+			image_url,
+			price,
 		};
 	},
 
-	mounted() {
-		// for unforeseen navigation into page
-		let cart = this.$store.state.cart;
-		if (this.name in cart) this.quantity = cart[this.name].quantity;
+	computed: {
+		quantity() {
+			return this.$store.getters.getFoodQuantityByName(this.name);
+		},
 	},
 
 	methods: {
 		increment() {
-			this.quantity++;
-			this.$store.commit({
-				type: 'addCart',
-				name: this.name,
-				price: this.price,
-			});
-		},
-		decrement() {
-			this.quantity--;
-			this.$store.commit({
-				type: 'removeCart',
-				name: this.name
-			});
+			this.$store.commit('addCart', this.item);
 		},
 	},
 };
