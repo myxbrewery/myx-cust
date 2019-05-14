@@ -1,6 +1,6 @@
 <template>
 	<div id="menu">
-		<NavBar :back="true" @back="dialog = true" />
+		<NavBar :back="true" @back="navDialog = true" />
 		<SectionTitle
 			header1="Stall menu"
 			header2="Order" />
@@ -12,7 +12,8 @@
 			:open="shop.open" />
 		<FoodItem v-for="item in menu"
 			:key="item.id"
-			:item="item" />
+			:item="item"
+			@customizeFood="customize(item)" />
 
 		<v-btn block dark
 			class="btn"
@@ -29,18 +30,15 @@
 			<v-icon color="white">remove_shopping_cart</v-icon>
 		</v-snackbar>
 
-		<v-dialog v-model="dialog">
-			<v-card>
-				<v-card-title>Leaving?</v-card-title>
-				<v-card-text>We do not support purchases from multiple stores. Going back will reset your cart.</v-card-text>
-				<v-card-text>Are you sure you want to leave?</v-card-text>
-				<v-card-actions>
-					<v-spacer />
-					<v-btn color="green darken-1" flat @click="dialog = false">Stay here</v-btn>
-					<v-btn color="red darken-1" flat @click="goBack">Go back</v-btn>
-				</v-card-actions>
-			</v-card>
-		</v-dialog>
+		<NavDialog
+			:navDialog="navDialog"
+			@closeDialog="closeNavDialog"
+			@goBack="goBack" />
+
+		<CustomizeDialog
+			:foodDialog="foodDialog"
+			:foodItem="foodItem"
+			@closeDialog="closeCustomizeDialog" />
 	</div>
 </template>
 
@@ -49,6 +47,8 @@ import NavBar from '@/components/NavBar';
 import SectionTitle from '@/components/SectionTitle';
 import FoodBar from '@/components/FoodBar';
 import FoodItem from '@/components/FoodItem';
+import NavDialog from '@/components/menu/NavDialog';
+import CustomizeDialog from '@/components/menu/CustomizeDialog';
 
 export default {
 	name: 'Menu',
@@ -57,6 +57,8 @@ export default {
 		SectionTitle,
 		FoodBar,
 		FoodItem,
+		NavDialog,
+		CustomizeDialog,
 	},
 
 	data() {
@@ -66,7 +68,9 @@ export default {
 			shop,
 			menu: [],
 			snackbar: false,  // cannot checkout empty cart
-			dialog: false,  // going back will empty your cart
+			navDialog: false,  // going back will empty your cart
+			foodDialog: false,  // customize FoodItem
+			foodItem: {},  // item to be customized
 		};
 	},
 
@@ -93,13 +97,25 @@ export default {
 			else this.snackbar = true;
 		},
 
+		closeNavDialog() {
+			this.navDialog = false;
+		},
 		goBack() {
-			this.dialog = false;
+			this.closeNavDialog();
 
 			this.$store.commit('exitMenu');
 			this.$router.push('browse');
 		},
-	}
+
+		customize(item) {
+			this.foodItem = item;
+			this.foodDialog = true;
+		},
+		closeCustomizeDialog() {
+			this.foodItem = {};
+			this.foodDialog = false;
+		},
+	},
 };
 </script>
 
@@ -117,16 +133,4 @@ export default {
 	font-size: 1.25rem;
 	text-align: center;
 }
-
-.v-card__title {
-	font-size: 2rem;
-}
-
-.v-card__text {
-	padding-top: 0px;
-
-	text-align: left;
-	font-size: 1.25rem;
-}
-
 </style>
