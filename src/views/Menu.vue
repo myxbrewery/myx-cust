@@ -1,6 +1,6 @@
 <template>
 	<div id="menu">
-		<NavBar :back="true" @back="dialog = true" />
+		<NavBar :back="true" @back="navDialog = true" />
 		<SectionTitle
 			header1="Stall menu"
 			header2="Order" />
@@ -30,15 +30,56 @@
 			<v-icon color="white">remove_shopping_cart</v-icon>
 		</v-snackbar>
 
-		<v-dialog v-model="dialog">
+		<v-dialog v-model="navDialog">
 			<v-card>
 				<v-card-title>Leaving?</v-card-title>
 				<v-card-text>We do not support purchases from multiple stores. Going back will reset your cart.</v-card-text>
 				<v-card-text>Are you sure you want to leave?</v-card-text>
 				<v-card-actions>
 					<v-spacer />
-					<v-btn color="green darken-1" flat @click="dialog = false">Stay here</v-btn>
+					<v-btn color="green darken-1" flat @click="navDialog = false">Stay here</v-btn>
 					<v-btn color="red darken-1" flat @click="goBack">Go back</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
+
+		<v-dialog v-model="foodDialog">
+			<v-card scrollable>
+				<v-card-title>{{ foodItem.name }}</v-card-title>
+				<v-divider />
+
+				<v-card-text v-if="noCustomizations" class="mt-3">
+					No customizations
+				</v-card-text>
+
+				<template v-for="(item, key) in foodItem.compulsory_options">
+					<v-card-text class="pa-3">
+						{{ key }}
+						<v-radio-group class="mt-1" hide-details>
+							<v-radio v-for="(item, key) in item"
+								:key="key"
+								:label="`${key}: $${item.cost}`"
+								:value="key" />
+						</v-radio-group>
+					</v-card-text>
+					<v-divider />
+				</template>
+
+				<template v-for="(options, name) in foodItem.optional_options">
+					<v-card-text class="pa-3">
+						{{ name }}
+						<v-checkbox v-for="(option, optionName) in options"
+							class="mt-1" hide-details 
+							:key="optionName"
+							:label="`${optionName}: $${option.cost}`" />
+					</v-card-text>
+					<v-divider />
+				</template>
+
+				<v-card-actions>
+					<v-spacer />
+					<v-btn flat color="red darken-1" @click="foodDialog = false">No</v-btn>
+					<v-btn flat color="green darken-1">Ok</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -68,8 +109,22 @@ export default {
 			shop,
 			menu: [],
 			snackbar: false,  // cannot checkout empty cart
-			dialog: false,  // going back will empty your cart
+			navDialog: false,  // going back will empty your cart
+			foodDialog: false,  // customize FoodItem
+			foodItem: {},  // item to be customized
 		};
+	},
+	computed: {
+		noCustomizations() {
+			function isEmpty(obj) {
+				return Object.keys(obj).length === 0;
+			}
+			if (isEmpty(this.foodItem)) return false;
+
+			let noCompulsory = isEmpty(this.foodItem.compulsory_options);
+			let noOptional = isEmpty(this.foodItem.optional_options);
+			return noCompulsory && noOptional;
+		},
 	},
 
 	mounted() {
@@ -90,14 +145,15 @@ export default {
 		},
 
 		goBack() {
-			this.dialog = false;
+			this.navDialog = false;
 
 			this.$store.commit('exitMenu');
 			this.$router.push('browse');
 		},
 
 		customize(item) {
-			console.log('customize', item.name);
+			this.foodItem = item;
+			this.foodDialog = true;
 		},
 	},
 };
