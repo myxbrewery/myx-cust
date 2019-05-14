@@ -107,6 +107,7 @@ export default {
 			this.foodDialog = true;
 		},
 		closeCustomizeDialog() {
+			this.foodItem = {};
 			this.foodDialog = false;
 		},
 	},
