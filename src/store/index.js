@@ -2,11 +2,13 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
+// const serverHost = '18.138.9.151';  // ec2 instance
+const serverHost = '10.12.254.221';  // local server
 
 export default new Vuex.Store({
 	state: {
-		// serverRoot: 'http://18.138.9.151:11235',
-		serverRoot: 'http://10.12.254.221:11235',
+		serverRoot: `http://${serverHost}:11235`,
+		socketServer: `ws://${serverHost}:11236`,
 		customer: {
 			id: 123912323,
 			type: 'school',

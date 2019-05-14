@@ -23,7 +23,14 @@ export default {
 	},
 
 	data() {
-		return this.$route.params;
+		let { amount, paylah_url, receipt_id } = this.$route.params;
+		if (!amount) amount = 0;  // set placeholder value for render if undef
+
+		return {
+			amount,
+			paylah_url,
+			receipt_id,
+		};
 	},
 
 	methods: {
