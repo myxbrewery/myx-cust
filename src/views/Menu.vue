@@ -5,7 +5,7 @@
 			header1="Stall menu"
 			header2="Order" />
 
-		<FoodBar class="elevation-1" style="height: 7.5%"
+		<FoodBar v-if="shop" class="elevation-1" style="height: 7.5%"
 			:icon="shop.icon"
 			:name="shop.name"
 			:halal="shop.halal"
@@ -61,7 +61,6 @@ export default {
 
 	data() {
 		let shop = this.$route.params.shop || this.$store.state.shop;
-		if (!shop) this.$router.push('browse');
 
 		return {
 			shop,
@@ -71,7 +70,13 @@ export default {
 		};
 	},
 
+	created() {
+		if (!this.shop) this.$router.push('browse');
+	},
+
 	mounted() {
+		if (!this.shop) return;
+		
 		let root = this.$store.state.serverRoot;
 		let { location, id } = this.shop;
 		let url = `${root}/stallmenu/${location}/${id}`;
