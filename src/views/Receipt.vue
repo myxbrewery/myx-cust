@@ -2,24 +2,61 @@
 	<div id="receipt">
 		<NavBar />
 		<h3>Queue No.</h3>
-		<h1 @click="notify">{{ this.$route.params.receipt_id }}</h1>
-		<h6>You will be notified when your order<br>is ready for collection.</h6>
+		<h1>{{ this.$route.params.receipt_id }}</h1>
+
+		<h6 v-if="!done">You will be notified when your order<br>is ready for collection.</h6>
+
+		<div v-if="done">
+			<h5 class="red--text">Your order is ready for collection.</h5>
+			<v-btn v-ripple outline color="red" class="ma-3"
+				@click="dialog = true">
+				View order summary
+			</v-btn>
+		</div>
+
+		<v-dialog v-model="dialog">
+			<v-card>
+				<v-card-title class="title">Order Summary</v-card-title>
+				<v-divider />
+
+				<template v-for="item in this.cart">
+					<OrderItem :item="item" />
+					<v-divider class="mx-3" />
+				</template>
+
+				<v-card-actions>
+					<v-spacer />
+					<v-btn flat @click="dialog = false">Close</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</div>
 </template>
 
 <script>
 import io from 'socket.io-client';
 import NavBar from '@/components/NavBar';
-
+import OrderItem from '@/components/OrderItem';
 
 export default {
 	name: 'Receipt',
 	components: {
 		NavBar,
+		OrderItem,
 	},
 	data() {
 		let socket = io(this.$store.state.socketServer);
-		return { socket };
+		return { 
+			socket,
+			done: false,
+			dialog: false,
+		};
+	},
+
+	computed: {
+		cart() {
+			return this.$store.state.cart;
+		},
 	},
 
 	methods: {
@@ -53,7 +90,10 @@ export default {
 
 		this.socket.emit('customer_join', this.$store.state.customer.id);
 		this.socket.on('orders', orders => {
-			if (allOrdersCompleted(orders)) this.notify();
+			if (allOrdersCompleted(orders)) {
+				this.done = true;
+				this.notify();
+			}
 		});
 	},
 }
