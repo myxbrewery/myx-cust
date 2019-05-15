@@ -2,8 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
-// const serverHost = '18.138.9.151';  // ec2 instance
-const serverHost = '10.12.254.221';  // local server
+const serverHost = '18.138.9.151';  // ec2 instance
+// const serverHost = '10.12.254.221';  // local server
 
 export default new Vuex.Store({
 	state: {
