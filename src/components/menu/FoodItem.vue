@@ -54,6 +54,8 @@
 </template>
 
 <script>
+let cloneDeep = require('lodash/cloneDeep');
+
 export default {
 	name: 'FoodItem',
 	props: ['item'],
@@ -77,7 +79,10 @@ export default {
 
 	methods: {
 		increment() {
-			this.$store.commit('addCart', this.item);
+			let cartItem = cloneDeep(this.item);
+			cartItem.compulsory_options = {};
+			cartItem.optional_options = {};
+			this.$store.commit('addCart', cartItem);
 		},
 	},
 };

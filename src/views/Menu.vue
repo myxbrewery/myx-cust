@@ -46,7 +46,7 @@
 import NavBar from '@/components/NavBar';
 import SectionTitle from '@/components/SectionTitle';
 import FoodBar from '@/components/FoodBar';
-import FoodItem from '@/components/FoodItem';
+import FoodItem from '@/components/menu/FoodItem';
 import NavDialog from '@/components/menu/NavDialog';
 import CustomizeDialog from '@/components/menu/CustomizeDialog';
 

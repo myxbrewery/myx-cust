@@ -35,6 +35,10 @@ export default new Vuex.Store({
 		addCart(state, item) {
 			state.cart.push(item);
 		},
+		removeCart(state, item) {
+			let index = state.cart.indexOf(item);
+			if (index > -1) state.cart.splice(index, 1);
+		},
 
 		exitMenu(state) {
 			state.shop = null;
