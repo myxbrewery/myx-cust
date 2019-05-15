@@ -3,10 +3,10 @@
 		<NavBar :back="true" @back="$router.push('menu')" />
 
 		<div class="scrollable">
-			<div class="entry" v-for="(item, key) in consolidateCart()">
-				<p class="quantity">{{ item.quantity }}</p>
-				<p class="item">{{ key }}</p>
-				<p class="price">${{ (item.price * item.quantity).toFixed(2) }}</p>
+			<div class="entry" v-for="(item, key) in cart">
+				<p class="quantity">{{ 1 }}</p>
+				<p class="item">{{ item.name }}</p>
+				<p class="price">${{ computeCost(item).toFixed(2) }}</p>
 			</div>
 		</div>
 
@@ -36,57 +36,39 @@ export default {
 	},
 
 	methods: {
-		computeTotal() {
-			let consolidated = this.consolidateCart();
-			let sum = 0;
-			for (let key in consolidated) {
-				let item = consolidated[key];
-				sum += item.price * item.quantity;
-			}
+		computeCost(item) {
+			let sum = parseFloat(item.school_price);
+			Object.values(item.compulsory_options).forEach(optionItem => {
+				Object.values(optionItem).forEach(obj => sum += obj.cost);
+			});
+			Object.values(item.optional_options).forEach(optionItem => {
+				Object.values(optionItem).forEach(obj => sum += obj.cost);
+			});
 			return sum;
 		},
-		consolidateCart() {
-			// TODO - resolve issues when customized items are introduced
-			let cart = this.$store.state.cart;
-			let consolidated = {};
-			for (let item of cart) {
-				let { name } = item;
-				if (name in consolidated) consolidated[name].quantity++;
-				else {
-					let data = {
-						price: parseFloat(item.school_price),
-						quantity: 1,
-					};
-					consolidated[name] = data;
-				}
-			}
-			return consolidated;
+		computeTotal() {
+			let sum = 0;
+			for (let item of this.cart) sum += this.computeCost(item);
+			return sum;
 		},
 		makePayment() {
 			let amount = this.computeTotal();
 
-			let orders = [];
-			for (let item of this.$store.state.cart) {
-				let newObj = {
-					base_price: parseFloat(item.school_price),
-					total_price: parseFloat(item.school_price),
-					compulsory_options: {},
-					optional_options: {},
-				};
-				Object.assign(item, newObj);
-				orders.push(item);
+			for (let item of this.cart) {
+				item.base_price = item.school_price;
+				item.total_price = this.computeCost(item);
 			}
 			
 			let data = {
 				metadata: {
 					// all orders should have same location and stall IDs
-					location_id: orders[0].location_id,
-					stall_id: orders[0].stall_id,
+					location_id: this.cart[0].location_id,
+					stall_id: this.cart[0].stall_id,
 					client_type: this.$store.state.customer.type,
 					total_payment: amount,
 					customer_id: this.$store.state.customer.id,
 				},
-				orders,
+				orders: this.cart,
 			};
 			fetch(`${this.$store.state.serverRoot}/order`, {
 				method: 'POST',
@@ -105,13 +87,20 @@ export default {
 					receipt_id,
 				};
 				this.$router.push({ name: 'Pay', params });
-			});
+			})
+			.catch(console.log);
+		},
+	},
+
+	computed: {
+		cart: function() {
+			return this.$store.state.cart;
 		},
 	},
 
 	mounted() {
 		if (this.computeTotal() === 0) this.$router.push('/menu');
-	}
+	},
 }
 </script>
 
