@@ -63,7 +63,8 @@ export default {
 	data() {
 		// these 3 are used for HTML rendering
 		let { name, image_url } = this.item;
-		let price = parseFloat(this.item.school_price);
+		let isSchool = this.$store.state.customer.type === 'school';
+		let price = parseFloat(isSchool ? this.item.school_price : this.item.public_price);
 		return {
 			name,
 			image_url,

@@ -44,12 +44,17 @@ export default {
 	},
 
 	methods: {
+		getPrice(item) {
+			let isSchool = this.$store.state.customer.type === 'school';
+			return isSchool ? item.school_price : item.public_price;
+		},
+
 		removeFromCart(item) {
 			if (this.cart.length > 1) this.$store.commit('removeCart', item);
 		},
 
 		computeCost(item) {
-			let sum = parseFloat(item.school_price);
+			let sum = parseFloat(this.getPrice(item));
 			Object.values(item.compulsory_options).forEach(optionItem => {
 				Object.values(optionItem).forEach(obj => sum += obj.cost);
 			});
@@ -67,7 +72,7 @@ export default {
 			let amount = this.computeTotal();
 
 			for (let item of this.cart) {
-				item.base_price = item.school_price;
+				item.base_price = this.getPrice(item);
 				item.total_price = this.computeCost(item);
 			}
 			
