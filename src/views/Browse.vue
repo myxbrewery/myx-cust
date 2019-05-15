@@ -40,6 +40,7 @@ export default {
 	},
 
 	mounted() {
+		if (this.$store.state.customer.token === null) this.$router.push('/');
 		this.$store.commit('resetCart');
 	},
 };
