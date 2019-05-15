@@ -63,16 +63,18 @@ export default {
 		notify() {
 			let el = $('#receipt');
 			let option = {
-				duration: 200,
+				duration: 500,
 				easing: 'linear',
 			};
 
 			function blink() {
 				el.velocity({ 'background-color': 'salmon' }, option)
-				  .velocity({ 'background-color': '#fafafa' }, option);
+				  .velocity({ 'background-color': '#fafafa' }, {
+				  	...option,
+				  	complete: blink,
+				  });
 			}
-
-			for (let i=0; i<5; i++) blink();
+			blink();
 		},
 	},
 
