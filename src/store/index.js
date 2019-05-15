@@ -10,7 +10,8 @@ export default new Vuex.Store({
 		serverRoot: `http://${serverHost}:11235`,
 		socketServer: `ws://${serverHost}:11236`,
 		customer: {
-			id: 123912323,
+			id: null,
+			token: null,
 			type: 'school',
 		},
 		shop: null,
@@ -28,6 +29,10 @@ export default new Vuex.Store({
 	},
 
 	mutations: {
+		userLogin(state, customer) {
+			state.customer = customer;
+		},
+
 		enterShop(state, shop) {
 			state.shop = shop;
 		},
