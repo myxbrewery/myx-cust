@@ -4,13 +4,13 @@
 			@click.native="$store.commit('enterShop', shop)"
 			:to="{ name: 'Menu', params: { shop } }">
 			<FoodBar
-				:icon="shop.icon"
+				:icon="shop.icon_url"
 				:name="shop.name"
 				:halal="shop.halal"
 				:open="shop.open" />
 
 			<div id="imageContainer">
-				<img class="food" :src="shop.image_url">
+				<img class="food" :src="image_url">
 			</div>
 		</router-link>
 	</div>
@@ -26,6 +26,12 @@ export default {
 	},
 	components: {
 		FoodBar,
+	},
+
+	computed: {
+		image_url: function() {
+			return `${this.$store.state.serverRoot}/${this.shop.image_url}`;
+		},
 	},
 };
 </script>

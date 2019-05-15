@@ -6,7 +6,7 @@
 			header2="Order" />
 
 		<FoodBar v-if="shop" class="elevation-1" style="height: 7.5%"
-			:icon="shop.icon"
+			:icon="shop.icon_url"
 			:name="shop.name"
 			:halal="shop.halal"
 			:open="shop.open" />

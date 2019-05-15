@@ -6,6 +6,7 @@
 			header2="Stalls" />
 
 		<Shop class="shop" v-for="(shop, index) in shops"
+			v-if="shop.open"
 			:key="index"
 			:shop="shop" />
 	</div>

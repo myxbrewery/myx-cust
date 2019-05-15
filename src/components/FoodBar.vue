@@ -1,6 +1,6 @@
 <template>
 	<div id="food-bar">
-		<img v-if="icon" class="icon" :src="icon_file">
+		<img v-if="icon" class="icon" :src="icon_url">
 		<div id="name">
 			<p>{{ name.toUpperCase() }}</p>
 			<p>
@@ -20,17 +20,16 @@
 export default {
 	name: 'FoodBar',
 	props: {
-		// TODO - resolve icon between here and Shop.vue/Menu.vue
-		icon: String,  // path relative to '/static/img/icons/{}.svg'
+		icon: String,
 		name: String,
 		halal: Boolean,
 		open: Boolean,
 	},
 
-	data() {
-		return {
-			icon_file: `/static/img/icons/${this.icon}.svg`,
-		};
+	computed: {
+		icon_url: function() {
+			return `${this.$store.state.serverRoot}/${this.icon}`;
+		},
 	},
 };
 </script>
