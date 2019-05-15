@@ -8,18 +8,11 @@
 					<v-btn icon>
 						<v-icon class="ma-0" @click="removeFromCart(item)">delete</v-icon>
 					</v-btn>
-					<div>
-						<p class="item">{{ item.name }}</p>
-						<v-divider v-if="!noOptions(item)" class="my-1" />
-						<compulsory-list v-if="!isEmpty(item.compulsory_options)"
-							:items="parseCompulsory(item)" />
-						<optional-list v-if="!isEmpty(item.optional_options)"
-							:items="parseOptional(item)" />
-					</div>
+					<OrderItem :item="item" />
 					<p class="price">${{ computeCost(item).toFixed(2) }}</p>
 				</div>
 
-				<v-divider />
+				<v-divider class="mx-3" />
 			</template>
 		</div>
 
@@ -40,81 +33,19 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import NavBar from '@/components/NavBar';
-
-Vue.component('compulsory-list', {
-	props: ['items'],
-	template: `
-		<ul class="ma-0 mt-2">
-			<li v-for="item in items">
-			 {{ item.name }}: {{ item.option }}
-			</li>
-	 	</ul>
-	`
-});
-
-Vue.component('optional-list', {
-	props: ['items'],
-	template: `
-		<ul class="ma-0 mt-2">
-			<li v-for="obj in items">
-				{{ obj.name }}:
-				<ul class="pl-2">
-					<li v-for="option in obj.options"
-						style="list-style-type: disc; list-style-position: inside;">
-					  {{ option }}
-				  </li>
-				</ul>
-			</li>
-		</ul>
-	`
-});
+import OrderItem from '@/components/OrderItem';
 
 export default {
 	name: 'Checkout',
 	components: {
 		NavBar,
+		OrderItem,
 	},
 
 	methods: {
 		removeFromCart(item) {
 			if (this.cart.length > 1) this.$store.commit('removeCart', item);
-		},
-
-		parseCompulsory(item) {
-			let options = item.compulsory_options;
-			let arr = [];
-
-			// convert to { name: 'Choice of Noodle', option: 'Kuay Teow' }
-			for (let optionType in options)
-				for (let optionChoice in options[optionType])
-					arr.push({ name: optionType, option: optionChoice });
-
-			return arr;
-		},
-		parseOptional(item) {
-			let options = item.optional_options;
-			let arr = [];
-
-			// convert to { name: 'Add Ons', options: ['egg', 'rice'] }
-			for (let optionType in options) {
-				let chosenOptions = Object.keys(options[optionType]);
-				if (chosenOptions.length > 0) arr.push({
-					name: optionType,
-					options: chosenOptions,
-				});
-			}
-
-			return arr;
-		},
-		isEmpty(obj) {
-			return Object.keys(obj).length === 0;
-		},
-		noOptions(item) {
-			let noCompulsory = this.isEmpty(item.compulsory_options);
-			let noOptional = this.isEmpty(item.optional_options);
-			return noCompulsory && noOptional;
 		},
 
 		computeCost(item) {
@@ -214,12 +145,6 @@ export default {
 	font-weight: bold;
 }
 
-.item {
-	width: 100%;
-	margin: 0;
-	font-size: 1.3rem;
-}
-
 .price {
 	font-size: 1.2rem;
 	font-weight: bold;
@@ -241,6 +166,9 @@ export default {
 }
 
 #total .item {
+	width: 100%;
+
+	font-size: 1.3rem;
 	font-weight: bold;
 	text-align: right;
 }
