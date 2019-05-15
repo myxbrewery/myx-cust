@@ -38,6 +38,10 @@ export default {
 		.then(response => response.json())
 		.then(json => { this.shops = json });
 	},
+
+	mounted() {
+		this.$store.commit('resetCart');
+	},
 };
 </script>
 

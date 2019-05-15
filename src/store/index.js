@@ -39,6 +39,9 @@ export default new Vuex.Store({
 			let index = state.cart.indexOf(item);
 			if (index > -1) state.cart.splice(index, 1);
 		},
+		resetCart(state) {
+			state.cart = [];
+		},
 
 		exitMenu(state) {
 			state.shop = null;
