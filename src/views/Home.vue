@@ -54,14 +54,29 @@ export default {
 		onSignIn(googleUser) {
       let profile = googleUser.getBasicProfile();
       let email = profile.getEmail();
-      let id_token = googleUser.getAuthResponse().id_token;
+      let bitArray = sjcl.hash.sha256.hash(email);
 
       let customer = {
-      	id: email,
-      	token: id_token,
+      	id: Math.abs(bitArray[0]),
+      	email,
+      	age: null,
+      	name: profile.getName(),
+      	image: profile.getImageUrl(),
+      	diet: null,
+      	type: 'school',
       };
-      this.$store.commit('userLogin', customer);
-      this.$router.push('/browse');
+      fetch(`${this.$store.state.serverRoot}/customer`, {
+      	method: 'POST',
+      	headers: {
+      		'Content-Type': 'application/json',
+      	},
+      	body: JSON.stringify(customer),
+      })
+      .then(response => response.json())
+      .then(() => {
+	      this.$store.commit('userLogin', customer);
+	      this.$router.push('/browse');
+      });
 		},
 	},
 };
