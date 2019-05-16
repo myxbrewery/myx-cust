@@ -45,9 +45,8 @@ export default {
 		OrderItem,
 	},
 	data() {
-		let socket = io(this.$store.state.socketServer);
 		return { 
-			socket,
+			socket: null,
 			done: false,
 			dialog: false,
 		};
@@ -60,6 +59,11 @@ export default {
 	},
 
 	methods: {
+		allOrdersCompleted(orders) {
+			let completed = orders.every(order => order.status_id >= 3);
+			return completed;
+		},
+
 		notify() {
 			let el = $('#receipt');
 			let option = {
@@ -76,6 +80,20 @@ export default {
 			}
 			blink();
 		},
+
+		resetSocket() {
+			let socket = io(this.$store.state.socketServer);
+			socket.emit('customer_join', this.$store.state.customer.id);
+			socket.on('orders', orders => {
+				console.log(orders.map(order => order.status_id));
+				if (this.allOrdersCompleted(orders)) {
+					this.done = true;
+					this.notify();
+				}
+			});
+			if (this.socket) this.socket.disconnect(true);
+			this.socket = socket;
+		},
 	},
 
 	created() {
@@ -85,18 +103,9 @@ export default {
 	},
 
 	mounted() {
-		function allOrdersCompleted(orders) {
-			let completed = orders.every(order => order.status_id >= 3);
-			return completed;
-		}
-
-		this.socket.emit('customer_join', this.$store.state.customer.id);
-		this.socket.on('orders', orders => {
-			console.log(orders);
-			if (allOrdersCompleted(orders)) {
-				this.done = true;
-				this.notify();
-			}
+		this.resetSocket();
+		document.addEventListener('visibilitychange', e => {
+			this.resetSocket();
 		});
 	},
 }
