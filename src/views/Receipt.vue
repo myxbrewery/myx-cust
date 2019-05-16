@@ -30,16 +30,6 @@
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
-
-		<v-footer absolute>
-			<v-btn block flat @click="debugOrders" />
-		</v-footer>
-		<v-snackbar v-model="snackbar"
-			bottom
-			:timeOut="2000">
-			{{ orderStatus }}
-			<v-btn flat @click="snackbar = false">Close</v-btn>
-		</v-snackbar>
 	</div>
 </template>
 
@@ -111,25 +101,6 @@ export default {
 			}
 			blink();
 		},
-
-		// debugOrders() {
-		// 	console.log('debug', this.orders);
-		// 	this.snackbar = true;
-		// },
-
-		// resetSocket() {
-		// 	let socket = io(this.$store.state.socketServer);
-		// 	socket.emit('customer_join', this.$store.state.customer.id);
-		// 	socket.on('orders', orders => {
-		// 		console.log(orders.map(order => order.status_id));
-		// 		if (this.allOrdersCompleted(orders)) {
-		// 			this.done = true;
-		// 			this.notify();
-		// 		}
-		// 	});
-		// 	if (this.socket) this.socket.disconnect(true);
-		// 	this.socket = socket;
-		// },
 	},
 
 	created() {
@@ -139,8 +110,6 @@ export default {
 	},
 
 	mounted() {
-		// this.resetSocket();
-		// document.addEventListener('visibilitychange', this.resetSocket);
 		this.interval = setInterval(this.checkOrderStatus, 3000);
 	},
 
