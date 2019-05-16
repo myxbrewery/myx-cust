@@ -1,5 +1,5 @@
 <template>
-	<div id="orderItem" class="pa-3">
+	<div id="orderItem" class="ma-3">
 		<p class="item">{{ item.name }}</p>
 
 		<compulsory-list v-if="!noCompulsory"
