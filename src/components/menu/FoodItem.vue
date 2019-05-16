@@ -21,7 +21,7 @@
 				<v-btn outline small
 					id="customize-button"
 					color="red accent-2"
-					@click="$emit('customizeFood')">
+					@click="customizeFood">
 					Customize
 				</v-btn>
 				<v-icon v-ripple @click="increment" style="border-radius: 3px">add_box</v-icon>
@@ -45,7 +45,7 @@
 			<v-btn outline small
 				id="customize-button"
 				color="red accent-2"
-				@click="$emit('customizeFood')">
+				@click="customizeFood">
 				Customize
 			</v-btn>
 			<v-icon v-ripple @click="increment" style="border-radius: 3px">add_box</v-icon>
@@ -79,11 +79,19 @@ export default {
 	},
 
 	methods: {
+		customizeFood() {
+			this.$emit('customizeFood');
+		},
 		increment() {
-			let cartItem = cloneDeep(this.item);
-			cartItem.compulsory_options = {};
-			cartItem.optional_options = {};
-			this.$store.commit('addCart', cartItem);
+			let options = this.item.compulsory_options;
+			let compulsoryExists = Object.keys(options).length > 0;
+			if (compulsoryExists) this.customizeFood();
+			else {
+				let cartItem = cloneDeep(this.item);
+				cartItem.compulsory_options = {};
+				cartItem.optional_options = {};
+				this.$store.commit('addCart', cartItem);
+			}
 		},
 	},
 };

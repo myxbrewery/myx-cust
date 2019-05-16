@@ -10,7 +10,7 @@
 
 			<template v-for="(item, key) in foodItem.compulsory_options">
 				<v-card-text class="pa-3">
-					{{ key }}
+					<span class="compulsory-text">{{ key }}</span>
 					<v-radio-group class="mt-1" hide-details
 						v-model="options.compulsory_options[key]">
 						<v-radio v-for="(item, key) in item"
@@ -24,7 +24,7 @@
 
 			<template v-for="(item, name) in foodItem.optional_options">
 				<v-card-text class="pa-3">
-					{{ name }}
+					<span class="optional-text">{{ name }}</span>
 					<v-checkbox v-for="(option, optionName) in item"
 						v-model="options.optional_options[name][optionName].selected"
 						class="mt-1" hide-details 
@@ -61,7 +61,10 @@ export default {
 	computed: {
 		dialog: {
 			get() { return this.foodDialog },
-			set(value) { if (!value) this.$emit('closeDialog') },
+			set(value) { 
+				if (!value) this.$emit('closeDialog');
+				else console.log(this.options);
+			},
 		},
 
 		noCustomizations() {
@@ -74,17 +77,44 @@ export default {
 			let noOptional = isEmpty(this.foodItem.optional_options);
 			return noCompulsory && noOptional;
 		},
+
+		allCompulsorySelected() {
+			let actualOptions = this.foodItem.compulsory_options;
+			let numActual = Object.keys(actualOptions).length;
+
+			let selectedOptions = this.options.compulsory_options;
+			let numSelected = Object.keys(selectedOptions).length;
+
+			return numActual === numSelected;
+		},
 	},
 
 	watch: {
 		// item.optional_options.'Add Ons'.chicken.cost
 		foodItem: function(newItem, oldItem) {
+			this.options.compulsory_options = {};
 			this.options.optional_options = cloneDeep(newItem.optional_options);
-		}
+		},
 	},
 
 	methods: {
+		animateCompulsoryText() {
+			let el = $('.compulsory-text');
+			let options = {
+				duration: 200,
+				easing: 'linear',
+			};
+			for (let i=0; i<2; i++)
+				el.velocity({ 'color': 'salmon' }, options)
+					.velocity({ 'color': 'black' }, options);
+		},
+
 		addOrder() {
+			if (!this.allCompulsorySelected) {
+				this.animateCompulsoryText();
+				return;
+			}
+
 			function removeUnselected(obj) {
 				let clone = cloneDeep(obj);
 				for (let key in clone) {
