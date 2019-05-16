@@ -30,6 +30,16 @@
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
+
+		<v-footer absolute>
+			<v-btn block flat @click="debugOrders" />
+		</v-footer>
+		<v-snackbar v-model="snackbar"
+			bottom
+			:timeOut="2000">
+			{{ orderStatus }}
+			<v-btn flat @click="snackbar = false">Close</v-btn>
+		</v-snackbar>
 	</div>
 </template>
 
@@ -50,12 +60,18 @@ export default {
 			socket,
 			done: false,
 			dialog: false,
+
+			orders: [],
+			snackbar: false,
 		};
 	},
 
 	computed: {
 		cart() {
 			return this.$store.state.cart;
+		},
+		orderStatus() {
+			return this.orders.map(obj => obj.status_id);
 		},
 	},
 
@@ -76,6 +92,11 @@ export default {
 			}
 			blink();
 		},
+
+		debugOrders() {
+			console.log('debug', this.orders);
+			this.snackbar = true;
+		},
 	},
 
 	created() {
@@ -92,7 +113,8 @@ export default {
 
 		this.socket.emit('customer_join', this.$store.state.customer.id);
 		this.socket.on('orders', orders => {
-			console.log(orders);
+			this.orders = orders;
+			console.log(this.orderStatus);
 			if (allOrdersCompleted(orders)) {
 				this.done = true;
 				this.notify();
