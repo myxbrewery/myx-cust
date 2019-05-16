@@ -57,6 +57,7 @@ export default {
 	data() {
 		return { 
 			socket: null,
+			interval: null,
 			done: false,
 			dialog: false,
 
@@ -79,6 +80,20 @@ export default {
 			let completed = orders.every(order => order.status_id >= 3);
 			return completed;
 		},
+		checkOrderStatus() {
+			let { serverRoot, customer } = this.$store.state;
+			console.log('checking', customer.id);
+			let url = `${serverRoot}/orders/${customer.id}`;
+			fetch(url)
+			.then(response => response.json())
+			.then(orders => {
+				console.log(orders.map(order => order.status_id));
+				if (this.allOrdersCompleted(orders)) {
+					this.done = true;
+					this.notify();
+				}
+			});
+		},
 
 		notify() {
 			let el = $('#receipt');
@@ -97,24 +112,24 @@ export default {
 			blink();
 		},
 
-		debugOrders() {
-			console.log('debug', this.orders);
-			this.snackbar = true;
-		},
+		// debugOrders() {
+		// 	console.log('debug', this.orders);
+		// 	this.snackbar = true;
+		// },
 
-		resetSocket() {
-			let socket = io(this.$store.state.socketServer);
-			socket.emit('customer_join', this.$store.state.customer.id);
-			socket.on('orders', orders => {
-				console.log(orders.map(order => order.status_id));
-				if (this.allOrdersCompleted(orders)) {
-					this.done = true;
-					this.notify();
-				}
-			});
-			if (this.socket) this.socket.disconnect(true);
-			this.socket = socket;
-		},
+		// resetSocket() {
+		// 	let socket = io(this.$store.state.socketServer);
+		// 	socket.emit('customer_join', this.$store.state.customer.id);
+		// 	socket.on('orders', orders => {
+		// 		console.log(orders.map(order => order.status_id));
+		// 		if (this.allOrdersCompleted(orders)) {
+		// 			this.done = true;
+		// 			this.notify();
+		// 		}
+		// 	});
+		// 	if (this.socket) this.socket.disconnect(true);
+		// 	this.socket = socket;
+		// },
 	},
 
 	created() {
@@ -124,8 +139,13 @@ export default {
 	},
 
 	mounted() {
-		this.resetSocket();
-		document.addEventListener('visibilitychange', this.resetSocket);
+		// this.resetSocket();
+		// document.addEventListener('visibilitychange', this.resetSocket);
+		this.interval = setInterval(this.checkOrderStatus, 3000);
+	},
+
+	destroyed() {
+		clearInterval(this.interval);
 	},
 }
 </script>
