@@ -86,12 +86,13 @@ export default {
 
 	mounted() {
 		function allOrdersCompleted(orders) {
-			let completed = orders.every(order => order.status_id === 4);
+			let completed = orders.every(order => order.status_id >= 3);
 			return completed;
 		}
 
 		this.socket.emit('customer_join', this.$store.state.customer.id);
 		this.socket.on('orders', orders => {
+			console.log(orders);
 			if (allOrdersCompleted(orders)) {
 				this.done = true;
 				this.notify();
