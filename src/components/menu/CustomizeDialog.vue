@@ -8,19 +8,11 @@
 				No customizations available
 			</v-card-text>
 
-			<template v-for="(item, key) in foodItem.compulsory_options">
-				<v-card-text class="pa-3">
-					<span class="compulsory-text">{{ key }}</span>
-					<v-radio-group class="mt-1" hide-details
-						v-model="options.compulsory[key]">
-						<v-radio v-for="(item, key) in item"
-							:key="key"
-							:label="`${key}: $${item.cost}`"
-							:value="key" />
-					</v-radio-group>
-				</v-card-text>
-				<v-divider />
-			</template>
+			<Compulsory v-for="(item, name) in foodItem.compulsory_options" 
+				:key="name"
+				:name="name"
+				:item="item"
+				@change="handleCompulsory($event)" />
 
 			<Optional v-for="(item, name) in foodItem.optional_options"
 				:key="name"
@@ -36,14 +28,16 @@
 		</v-card>
 	</v-dialog>
 </template>
-con
+
 <script>
+import Compulsory from './option/Compulsory';
 import Optional from './option/Optional';
 let cloneDeep = require('lodash/cloneDeep');
 
 export default {
 	name: 'CustomizeDialog',
 	components: {
+		Compulsory,
 		Optional,
 	},
 	props: ['foodDialog', 'foodItem'],
@@ -85,13 +79,6 @@ export default {
 		},
 	},
 
-	watch: {
-		// item.optional_options.'Add Ons'.chicken.cost
-		foodItem: function(newItem, oldItem) {
-			this.options.compulsory = {};
-		},
-	},
-
 	methods: {
 		animateCompulsoryText() {
 			let el = $('.compulsory-text');
@@ -110,27 +97,6 @@ export default {
 				return;
 			}
 
-			function removeUnselected(obj) {
-				let clone = cloneDeep(obj);
-				for (let key in clone) {
-					if (!clone[key].selected) delete clone[key];
-					else delete clone[key].selected;
-				}
-				return clone;
-			}
-
-			let parseCompulsory = (oldOptions) => {
-				let newOptions = {};
-				for (let key in oldOptions) {
-					let selected = oldOptions[key];
-					newOptions[key] = {};
-					newOptions[key][selected] = this.foodItem.compulsory_options[key][selected];
-				}
-				return newOptions;
-			};
-
-			this.options.compulsory = parseCompulsory(this.options.compulsory);
-
 			let { compulsory, optional } = this.options;
 			let cartItem = cloneDeep(this.foodItem);
 			cartItem.compulsory_options = cloneDeep(compulsory);
@@ -140,6 +106,9 @@ export default {
 			this.dialog = false;
 		},
 
+		handleCompulsory({ name, item }) {
+			this.options.compulsory[name] = { ...item };
+		},
 		handleOptional({ name, item }) {
 			this.options.optional[name] = { ...item };
 		},
@@ -150,10 +119,5 @@ export default {
 <style scoped>
 .v-card__title {
 	font-size: 1.5rem;
-}
-
-.v-card__text {
-	text-align: left;
-	font-size: 1.15rem;
 }
 </style>
