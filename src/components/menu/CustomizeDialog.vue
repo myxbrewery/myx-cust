@@ -12,7 +12,7 @@
 				<v-card-text class="pa-3">
 					<span class="compulsory-text">{{ key }}</span>
 					<v-radio-group class="mt-1" hide-details
-						v-model="options.compulsory_options[key]">
+						v-model="options.compulsory[key]">
 						<v-radio v-for="(item, key) in item"
 							:key="key"
 							:label="`${key}: $${item.cost}`"
@@ -22,17 +22,11 @@
 				<v-divider />
 			</template>
 
-			<template v-for="(item, name) in foodItem.optional_options">
-				<v-card-text class="pa-3">
-					<span class="optional-text">{{ name }}</span>
-					<v-checkbox v-for="(option, optionName) in item"
-						v-model="options.optional_options[name][optionName].selected"
-						class="mt-1" hide-details 
-						:key="optionName"
-						:label="`${optionName}: $${option.cost}`" />
-				</v-card-text>
-				<v-divider />
-			</template>
+			<Optional v-for="(item, name) in foodItem.optional_options"
+				:key="name"
+				:name="name"
+				:item="item"
+				@change="handleOptional($event)" />
 
 			<v-card-actions>
 				<v-spacer />
@@ -44,16 +38,20 @@
 </template>
 con
 <script>
+import Optional from './option/Optional';
 let cloneDeep = require('lodash/cloneDeep');
 
 export default {
 	name: 'CustomizeDialog',
+	components: {
+		Optional,
+	},
 	props: ['foodDialog', 'foodItem'],
 	data() {
 		return {
 			options: {
-				compulsory_options: {},
-				optional_options: {},
+				compulsory: {},
+				optional: {},
 			},
 		};
 	},
@@ -68,9 +66,7 @@ export default {
 		},
 
 		noCustomizations() {
-			function isEmpty(obj) {
-				return Object.keys(obj).length === 0;
-			}
+			let isEmpty = (obj) => Object.keys(obj).length === 0;
 			if (isEmpty(this.foodItem)) return false;
 
 			let noCompulsory = isEmpty(this.foodItem.compulsory_options);
@@ -82,7 +78,7 @@ export default {
 			let actualOptions = this.foodItem.compulsory_options;
 			let numActual = Object.keys(actualOptions).length;
 
-			let selectedOptions = this.options.compulsory_options;
+			let selectedOptions = this.options.compulsory;
 			let numSelected = Object.keys(selectedOptions).length;
 
 			return numActual === numSelected;
@@ -92,8 +88,7 @@ export default {
 	watch: {
 		// item.optional_options.'Add Ons'.chicken.cost
 		foodItem: function(newItem, oldItem) {
-			this.options.compulsory_options = {};
-			this.options.optional_options = cloneDeep(newItem.optional_options);
+			this.options.compulsory = {};
 		},
 	},
 
@@ -134,25 +129,19 @@ export default {
 				return newOptions;
 			};
 
-			let parseOptional = (oldOptions) => {
-				let newOptions = {};
-				for (let key in oldOptions) {
-					let item = oldOptions[key];
-					newOptions[key] = removeUnselected(item);
-				}
-				return newOptions;
-			};
+			this.options.compulsory = parseCompulsory(this.options.compulsory);
 
-			this.options.compulsory_options = parseCompulsory(this.options.compulsory_options);
-			this.options.optional_options = parseOptional(this.options.optional_options);
-
-			let { compulsory_options, optional_options } = this.options;
+			let { compulsory, optional } = this.options;
 			let cartItem = cloneDeep(this.foodItem);
-			cartItem.compulsory_options = cloneDeep(compulsory_options);
-			cartItem.optional_options = cloneDeep(optional_options);
+			cartItem.compulsory_options = cloneDeep(compulsory);
+			cartItem.optional_options = cloneDeep(optional);
 			this.$store.commit('addCart', cartItem);
 
 			this.dialog = false;
+		},
+
+		handleOptional({ name, item }) {
+			this.options.optional[name] = { ...item };
 		},
 	},
 };
